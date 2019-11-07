@@ -13,11 +13,20 @@ router.get('/categories', (req, res) => {
 });
 
 // GET /api/usercategories Shows all of the categories for a user in which a listitem exists (for /profile page)
+/* B/c listitems is any array, we need to iterate through it to get to the category name that will 
+end up showing on the client side. We add to the array 'arr' when we find a category name that is 
+not already included. If a user has multiple saved line items, two within 'travel' and one within 'food,
+the result should be 'travel' and 'food'.
+*/
 router.get('/usercategories', (req, res) => {
-  User.findById(req.query.uId).populate('categories').exec((err, user) =>{
-    console.log(`🐭`)
-    console.log(`${user}`)
-    // res.send(user)
+  User.findById(req.query.uId).populate('listitems.categories').exec((err, user) =>{
+    let arr = [];
+    for(let i = 0; i < user.listitems.length; i++){
+      if (!arr.includes(user.listitems[i].categories[0].name)) {
+        arr.push(user.listitems[i].categories[0].name)
+      }
+    }
+    res.send(arr)
   })
 });
 
