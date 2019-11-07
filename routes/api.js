@@ -5,6 +5,7 @@ const Category = require('../models/category');
 
 // Everything here mounted at /api/...
 
+
 // GET /api/categories Lists all categories will be used for the dropdown menu
 router.get('/categories', (req, res) => {
   Category.find({}, (err, categories) => {
@@ -26,7 +27,7 @@ router.get('/usercategories', (req, res) => {
         arr.push(user.listitems[i].categories[0].name)
       }
     }
-    res.send(arr)
+    res.json(arr)
   })
 });
 
@@ -48,7 +49,7 @@ router.get('/listitems/:id', (req, res) => {
 // Post /api/newcategory ONLY FOR US TO USE to add new categories
 router.post('/newcategory', (req, res) => {
   Category.create({name: req.body.name}, (err, category) => {
-    res.send(category);
+    res.json(category);
   });
 }); 
 
@@ -62,7 +63,7 @@ router.post('/categories', (req, res) => {
       categories: req.body.catId
     });
     user.save( (err, newUser) => {
-      res.send(newUser);
+      res.json(newUser);
     });
   });
 });
