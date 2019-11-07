@@ -2,5 +2,7 @@
 
 ## Team Members
 
-Brandon - Git master,
+Brandon - Git master
+Ari - Developer 
 Abdi - Developer
+
