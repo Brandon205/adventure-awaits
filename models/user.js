@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const listitemSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  photo: String,
+  completed: {type: Boolean, default: false},
+  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category"}]
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -19,7 +27,9 @@ const userSchema = new mongoose.Schema({
     required: [true, 'You must enter an email'],
     minlength: [5, 'Password must be between 5 and 99 characters'],
     maxlength: [99, 'Password must be between 5 and 99 characters'],
-  }
+  },
+
+  listitems: [listitemSchema]
 });
 
 userSchema.set('toObject', {
