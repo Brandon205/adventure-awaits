@@ -5,6 +5,7 @@ const Category = require('../models/category');
 
 // Everything here mounted at /api/...
 
+
 // GET /api/categories Lists all categories will be used for the dropdown menu
 router.get('/categories', (req, res) => {
   Category.find({}, (err, categories) => {
@@ -13,9 +14,23 @@ router.get('/categories', (req, res) => {
 });
 
 // GET /api/usercategories Shows all of the categories for a user in which a listitem exists (for /profile page)
+/* B/c listitems is any array, we need to iterate through it to get to the category name that will 
+end up showing on the client side. We add to the array 'arr' when we find a category name that is 
+not already included. If a user has multiple saved line items, two within 'travel' and one within 'food,
+the result should be 'travel' and 'food'.
+*/
 router.get('/usercategories', (req, res) => {
-  res.send('hello')
+  User.findById(req.query.uId).populate('listitems.categories').exec((err, user) =>{
+    let arr = [];
+    for(let i = 0; i < user.listitems.length; i++){
+      if (!arr.includes(user.listitems[i].categories[0].name)) {
+        arr.push(user.listitems[i].categories[0].name)
+      }
+    }
+    res.json(arr)
+  })
 });
+
 
 // GET /api/listitems/:categoryName Will show a list of listItems for that category name
 router.get('/listitems/:cName', (req, res) => { 
@@ -34,7 +49,7 @@ router.get('/listitems/:id', (req, res) => {
 // Post /api/newcategory ONLY FOR US TO USE to add new categories
 router.post('/newcategory', (req, res) => {
   Category.create({name: req.body.name}, (err, category) => {
-    res.send(category);
+    res.json(category);
   });
 }); 
 
@@ -48,7 +63,7 @@ router.post('/categories', (req, res) => {
       categories: req.body.catId
     });
     user.save( (err, newUser) => {
-      res.send(newUser);
+      res.json(newUser);
     });
   });
 });
