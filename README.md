@@ -3,3 +3,4 @@
 ## Team Members
 
 Brandon - Git master
+Ari - Developer 
