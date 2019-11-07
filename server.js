@@ -16,5 +16,7 @@ db.on('error', (err) => console.log(`Database error: ${err}`));
 
 app.use('/auth', require('./routes/auth'));
 app.use('/locked', expressJWT({ secret: process.env.JWT_SECRET }).unless({ method: 'POST' }), require('./routes/locked'));
+app.use('/api', require('./routes/api'));
+
 
 app.listen(process.env.PORT || 3001)
