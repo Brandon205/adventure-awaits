@@ -34,14 +34,20 @@ router.get('/usercategories', (req, res) => {
 
 // GET /api/listitems/:categoryName Will show a list of listItems for that category name
 router.get('/listitems/:cName', (req, res) => { 
-  User.listitems.find({category: req.params.cName}, (err, listitems) => {
-    res.json(listitems);
-  });
+  User.findById(req.query.uId).populate('listitems.categories').exec((err, user) =>{
+    let arr = [];
+    for(let i = 0; i < user.listitems.length; i++){
+      if (user.listitems[i].categories[0].name === req.params.cName) {
+        arr.push(user.listitems[i])
+      }
+    }
+    res.json(arr)
+  })
 });
 
 // GET /api/listitems/:id Will show a list of the details linked to a specific listitem
 router.get('/listitems/:id', (req, res) => { 
-  User.listitems.find({name: req.params.id}, (err, listitem) => { // Be sure to pass in a name as the id or change to findById
+  User.listitems.find({_id: req.params.id}, (err, listitem) => { // Be sure to pass in a name as the id or change to findById
     res.json(listitem);
   });
 });
