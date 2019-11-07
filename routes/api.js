@@ -14,8 +14,13 @@ router.get('/categories', (req, res) => {
 
 // GET /api/usercategories Shows all of the categories for a user in which a listitem exists (for /profile page)
 router.get('/usercategories', (req, res) => {
-  res.send('hello')
+  User.findById(req.query.uId).populate('categories').exec((err, user) =>{
+    console.log(`🐭`)
+    console.log(`${user}`)
+    // res.send(user)
+  })
 });
+
 
 // GET /api/listitems/:categoryName Will show a list of listItems for that category name
 router.get('/listitems/:cName', (req, res) => { 
