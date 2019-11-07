@@ -47,18 +47,13 @@ router.get('/listitems/:cName', (req, res) => {
 
 // GET /api/listitems/:id Will show a list of the details linked to a specific listitem
 router.get('/listitem/:id', (req, res) => { 
-  console.log('hello')
   User.findById(req.query.uId, (err, user) => { // Be sure to pass in a name as the id or change to findById
-    console.log(user)
-    // res.send(user);
     let arr = [];
     for (let i = 0; i < user.listitems.length; i++) {
       if (user.listitems[i].id === req.params.id) {
-        console.log('new item in arr');
         arr.push(user.listitems[i])
       }
     }
-    console.log(arr);
     res.send(arr);
     }).catch(err => console.log(err));
   });
