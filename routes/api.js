@@ -19,7 +19,7 @@ not already included. If a user has multiple saved line items, two within 'trave
 the result should be 'travel' and 'food'.
 */
 router.get('/usercategories', (req, res) => {
-  User.findById(req.query.uId).populate('listitems.categories').exec((err, user) =>{
+  User.findById(req.user._id).populate('listitems.categories').exec((err, user) =>{
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
       if (!arr.includes(user.listitems[i].categories[0].name)) {
@@ -32,7 +32,7 @@ router.get('/usercategories', (req, res) => {
 
 // GET /api/listitems/:categoryName Will show a list of listItems for that category name
 router.get('/listitems/:cName', (req, res) => { 
-  User.findById(req.query.uId).populate('listitems.categories').exec((err, user) =>{
+  User.findById(req.user._id).populate('listitems.categories').exec((err, user) =>{
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
       if (user.listitems[i].categories[0].name === req.params.cName) {
@@ -45,14 +45,8 @@ router.get('/listitems/:cName', (req, res) => {
 
 // GET /api/listitems/:id Will show a list of the details linked to a specific listitem
 router.get('/listitem/:id', (req, res) => { 
-  User.findById(req.query.uId, (err, user) => { // Be sure to pass in a name as the id or change to findById
-    let arr = [];
-    for (let i = 0; i < user.listitems.length; i++) {
-      if (user.listitems[i].id === req.params.id) {
-        arr.push(user.listitems[i])
-      }
-    }
-    res.send(arr);
+  User.findById(req.user._id, (err, user) => { // Be sure to pass in a name as the id or change to findById
+    res.send(user.listitems.id(req.params.id));
     }).catch(err => console.log(err));
   });
 
@@ -80,19 +74,16 @@ router.post('/categories', (req, res) => {
 
 // PUT /listitem/:id Will edit the bucket list item name from form on page /listName/edit
 router.put('/listitem/:id', (req, res) => {
-  User.findById(req.query.uId, (err, user) => {
-    for (let i = 0; i < user.listitems.length; i++) {
-      if(user.listitems[i].id === req.params.id) {
-        user.listitems[i] = {
-          _id: user.listitems[i].id,
-          name: req.body.name,
-          description: req.body.description,
-          photo: req.body.photo,
-          completed: false
-        }
-        res.send(user.listitems[i])
-      }
-    }
+  User.findById(req.user._id, (err, user) => {
+    user.listitems.id(req.params.id).remove();
+    user.listitems.push({
+      _id: req.params.id,
+      name: req.body.name,
+      description: req.body.description,
+      photo: req.body.photo,
+      completed: false
+    });
+    res.json(user.listitems.id(req.params.id));
   }).catch(err => console.log(err))
 });
 
