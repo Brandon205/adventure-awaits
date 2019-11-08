@@ -7,7 +7,7 @@ import {
   Route, 
   Link 
 } from 'react-router-dom';
-import HomePage from './HomePage';
+import {HomePage} from './HomePage';
 import Profile from './Profile';
 import Bucketlist from './Bucketlist';
 import NewListitem from './NewListitem';
@@ -59,43 +59,44 @@ class App extends React.Component {
     this.setState({ token: '', user: null });
   }
 
-  handleClick = () => {
-    let config = {
-      headers: {
-        Authorization: `Bearer ${this.state.token}`
-      }
-    }
-    Axios.get('/locked/test', config).then(res => {
-      this.setState({ lockedResult: res.data });
-    });
-  };
-
   render() { 
     let navContents;
+    let display;
     if (this.state.user) {
+      display = ( <Profile token={this.state.token} /> )
       navContents = (
         <nav>
           <div className="left">
             <button onClick={this.logout}>Logout</button>
           </div>
           <div className="middle">
-            <Link to="/">Adventure Awaits</Link>
+            <Link to="/homepage">Adventure Awaits</Link>
           </div>
           <div className="right">
-            <Link to='/profile'>Profile</Link>
+            <Link to='/profile'>Profile</Link>{' | '}
             <Link to='/profile/new'>New</Link>
           </div>
         </nav>
       );
     } else {
+      display = (
+        <div>
+          <HomePage />
+          <Signup liftToken={this.liftToken} />
+          <Login liftToken={this.liftToken} />
+        </div>
+      )
       navContents = (
         <nav>
           <div className="left">
-            <Link to='/signup'>Signup</Link>
+            <Link to='/signup'>Signup</Link>{' | '}
             <Link to='/login'>Login</Link>
           </div>
           <div className="middle">
-            <h2>Adventure Awaits</h2>
+            <Link to="/homepage">Adventure Awaits</Link>
+          </div>
+          <div className="right">
+            <p>Welcome!</p>
           </div>
         </nav>
       );
@@ -106,10 +107,11 @@ class App extends React.Component {
         <header>
           {navContents}
         </header>
-        <Route exact path="/" component={HomePage} />
+        {display}
+        <Route exact path="/homepage" component={HomePage} />
         <Route exact path="/signup" render={ () => <Signup liftToken={this.liftToken} /> } />
         <Route exact path="/login" render={ () => <Login liftToken={this.liftToken} /> } />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile" render={ () => <Profile token={this.state.token} /> } />
         <Route exact path="/listitem/new" component={NewListitem} />
         <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} /> } />
         <Route exact path="/profile/:id/adventure" render={ (props) => <AdventureDetail {...props} /> } />

@@ -20,14 +20,16 @@ the result should be 'travel' and 'food'.
 */
 router.get('/usercategories', (req, res) => {
   User.findById(req.user._id).populate('listitems.categories').exec((err, user) =>{
+    if (err) return console.log(err);
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
-      if (!arr.includes(user.listitems[i].categories[0].name)) {
+      if (user.listitems[i].categories.length > 0 && !arr.includes(user.listitems[i].categories[0].name)) {
+        console.log(user.listitems[i].categories[0].name);
         arr.push(user.listitems[i].categories[0].name)
       }
     }
     res.json(arr);
-  }).catch(err => console.log(err));
+  });
 });
 
 // GET /api/listitems/:categoryName Will show a list of listItems for that category name
@@ -40,7 +42,7 @@ router.get('/listitems/:cName', (req, res) => {
       }
     }
     res.json(arr);
-  }).catch(err => console.log(err));
+  });
 });
 
 // GET /api/listitems/:id Will show a list of the details linked to a specific listitem
@@ -54,7 +56,7 @@ router.get('/listitem/:id', (req, res) => {
 router.post('/newcategory', (req, res) => {
   Category.create({name: req.body.name}, (err, category) => {
     res.json(category);
-  }).catch(err => console.log(err));
+  })
 }); 
 
 // POST /api/categories Will "add" a new category & list item referencing that category
