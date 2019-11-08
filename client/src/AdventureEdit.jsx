@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AdventureEdit extends Component {
+class AdventureEdit extends Read.Component {
   state = { 
 
   }

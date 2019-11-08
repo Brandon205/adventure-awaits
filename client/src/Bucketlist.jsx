@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Bucketlist extends Component {
+class Bucketlist extends React.Component {
   state = { 
 
   }
