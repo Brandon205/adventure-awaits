@@ -1,13 +1,10 @@
 import React from 'react';
 
 class Profile extends React.Component {
-  state = { 
-
-  }
 
   render() { 
     return ( 
-      <h1>This is the Profile component</h1>
+      <Link to="/profile/new"> Create your new Adventure! </Link> <br /> 
     );
   }
 }
