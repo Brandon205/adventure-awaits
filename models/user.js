@@ -5,7 +5,6 @@ const listitemSchema = new mongoose.Schema({
   name: String,
   description: String,
   photo: String,
-  completed: {type: Boolean, default: false},
   categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category"}]
 });
 

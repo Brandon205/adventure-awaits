@@ -1,8 +1,19 @@
 import React from 'react';
 import Signup from './Signup';
 import Login from './Login';
-import './App.css';
 import Axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Route, 
+  Link 
+} from 'react-router-dom';
+import HomePage from './HomePage';
+import Profile from './Profile';
+import Bucketlist from './Bucketlist';
+import NewListitem from './NewListitem';
+import AdventureDetail from './AdventureDetail';
+import AdventureEdit from './AdventureEdit';
+import './App.css';
 
 class App extends React.Component {
   state = { 
@@ -60,34 +71,50 @@ class App extends React.Component {
   };
 
   render() { 
-    let contents;
+    let navContents;
     if (this.state.user) {
-      contents = (
-        <>
-          <p>Hello, {this.state.user.name} </p>
-          <button onClick={this.handleClick}>Test protected route</button>
-          <button onClick={this.logout}>Logout</button>
-          <p>{this.state.lockedResult}</p>
-        </>
-      )
+      navContents = (
+        <nav>
+          <div className="left">
+            <button onClick={this.logout}>Logout</button>
+          </div>
+          <div className="middle">
+            <Link to="/">Adventure Awaits</Link>
+          </div>
+          <div className="right">
+            <Link to='/profile'>Profile</Link>
+            <Link to='/profile/new'>New</Link>
+          </div>
+        </nav>
+      );
     } else {
-      contents = (
-        <>
-          <Signup liftToken={this.liftToken} />
-          <Login liftToken={this.liftToken} />
-        </>
-      )
+      navContents = (
+        <nav>
+          <div className="left">
+            <Link to='/signup'>Signup</Link>
+            <Link to='/login'>Login</Link>
+          </div>
+          <div className="middle">
+            <h2>Adventure Awaits</h2>
+          </div>
+        </nav>
+      );
     }
 
     return ( 
-      <div className="App">
+      <Router>
         <header>
-          <h1>Welcome to my site!</h1>
+          {navContents}
         </header>
-        <div className="content-box">
-          {contents}
-        </div>
-      </div>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/signup" render={ () => <Signup liftToken={this.liftToken} /> } />
+        <Route exact path="/login" render={ () => <Login liftToken={this.liftToken} /> } />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile/new" component={NewListitem} />
+        <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} /> } />
+        <Route exact path="/profile/:id/adventure" render={ (props) => <AdventureDetail {...props} /> } />
+        <Route exact path="/profile/:id/edit" render={ (props) => <AdventureEdit {...props} /> } />
+      </Router>
     );
   }
 }
