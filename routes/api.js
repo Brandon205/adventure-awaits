@@ -5,12 +5,11 @@ const Category = require('../models/category');
 
 // Everything here mounted at /api/...
 
-
 // GET /api/categories Lists all categories will be used for the dropdown menu
 router.get('/categories', (req, res) => {
   Category.find({}, (err, categories) => {
     res.json(categories);
-  });
+  }).catch(err => console.log(err));
 });
 
 // GET /api/usercategories Shows all of the categories for a user in which a listitem exists (for /profile page)
@@ -27,10 +26,9 @@ router.get('/usercategories', (req, res) => {
         arr.push(user.listitems[i].categories[0].name)
       }
     }
-    res.json(arr)
-  })
+    res.json(arr);
+  }).catch(err => console.log(err));
 });
-
 
 // GET /api/listitems/:categoryName Will show a list of listItems for that category name
 router.get('/listitems/:cName', (req, res) => { 
@@ -38,11 +36,11 @@ router.get('/listitems/:cName', (req, res) => {
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
       if (user.listitems[i].categories[0].name === req.params.cName) {
-        arr.push(user.listitems[i])
+        arr.push(user.listitems[i]);
       }
     }
-    res.json(arr)
-  })
+    res.json(arr);
+  }).catch(err => console.log(err));
 });
 
 // GET /api/listitems/:id Will show a list of the details linked to a specific listitem
@@ -62,7 +60,7 @@ router.get('/listitem/:id', (req, res) => {
 router.post('/newcategory', (req, res) => {
   Category.create({name: req.body.name}, (err, category) => {
     res.json(category);
-  });
+  }).catch(err => console.log(err));
 }); 
 
 // POST /api/categories Will "add" a new category & list item referencing that category
@@ -77,42 +75,25 @@ router.post('/categories', (req, res) => {
     user.save( (err, newUser) => {
       res.json(newUser);
     });
-  });
+  }).catch(err => console.log(err));
 });
 
-// PUT /categories/:cid/listitem/:lid Will edit completed boolean to true in db
-router.put('/categories/:cid/listitem/:lid', (req, res) => {
-
-});
-
-// PUT /listitem/:lid Will edit the bucket list item name from form on page /listName/edit
-router.put('/listitem/:lid', (req, res) => {
+// PUT /listitem/:id Will edit the bucket list item name from form on page /listName/edit
+router.put('/listitem/:id', (req, res) => {
   User.findById(req.query.uId, (err, user) => {
-    console.log(`🦄`,user.listitems)
-    // let arr = [];
-    for ( let i = 0; i < user.listitems.length; i++) {
-      console.log(`🦐`)
-      if(user.listitems[i].id === req.params.lid) {
-        console.log(`🐼`)
-        user.listitems[i].findByIdAndUpdate(req.params.lid, {
+    for (let i = 0; i < user.listitems.length; i++) {
+      if(user.listitems[i].id === req.params.id) {
+        user.listitems[i] = {
+          _id: user.listitems[i].id,
           name: req.body.name,
           description: req.body.description,
-          photo: req.body.photo
-        }, (err, listitem) => {
-          res.json(listitem)
-        })
+          photo: req.body.photo,
+          completed: false
+        }
+        res.send(user.listitems[i])
       }
     }
   }).catch(err => console.log(err))
 });
 
-// User.findById(req.query.uId, (err, user) => { // Be sure to pass in a name as the id or change to findById
-//   let arr = [];
-//   for (let i = 0; i < user.listitems.length; i++) {
-//     if (user.listitems[i].id === req.params.id) {
-//       arr.push(user.listitems[i])
-//     }
-//   }
-//   res.send(arr);
-//   }).catch(err => console.log(err));
 module.exports = router;
