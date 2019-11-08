@@ -22,13 +22,10 @@ class Profile extends React.Component {
     var mappedCategories;
     if(!this.state.categories.length) {
       mappedCategories = <p> Create a New Adventure Above</p>
-    } 
-    // TODO: Make sure this works when /profile/new POST route is complete
-    // else {
-    //   mappedCategories = <li> {categories } </li> 
-    // }
+    } else {
+      mappedCategories = <li> {this.state.categories}</li> 
+    }
     
-
     return ( 
       <div>
       <Link to="/profile/new"> Create your new Adventure! </Link> <br /> 
