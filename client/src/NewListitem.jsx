@@ -35,7 +35,9 @@ class NewListitem extends Component {
     })
   }
   render() { 
-      const mappedCategories = this.state.categories.map( (category,id) => <option value={this}">Art</option>)
+    
+    const mappedCategories = this.state.categories.map( (category,id) => <option value={category._id}>{category.name}</option>)
+
     return ( 
       <>
       <h1>This is the NewListitem component</h1>
@@ -45,20 +47,7 @@ class NewListitem extends Component {
         <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
         
         <select name="category">
-          
-          <option value="">Career</option>
-          <option value="">Education</option>
-          <option value="">Events</option>
-          <option value="">Family</option>
-          <option value="">Financial</option>
-          <option value="">Fitness</option>
-          <option value="">Food/Drink</option>
-          <option value="">Life Goals</option>
-          <option value="">Random</option>
-          <option value="">Relationships</option>
-          <option value="">Sport</option>
-          <option value="">Travel</option>
-          <option value="">Volunteer/Charity</option>
+        {mappedCategories}
         </select> <br />
         <input type="submit" value="Submit"/>
       </form> 
