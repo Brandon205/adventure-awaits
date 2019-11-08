@@ -34,19 +34,31 @@ router.get('/usercategories', (req, res) => {
 
 // GET /api/listitems/:categoryName Will show a list of listItems for that category name
 router.get('/listitems/:cName', (req, res) => { 
-  User.listitems.find({category: req.params.cName}, (err, listitems) => {
-    res.json(listitems);
-  });
+  User.findById(req.query.uId).populate('listitems.categories').exec((err, user) =>{
+    let arr = [];
+    for(let i = 0; i < user.listitems.length; i++){
+      if (user.listitems[i].categories[0].name === req.params.cName) {
+        arr.push(user.listitems[i])
+      }
+    }
+    res.json(arr)
+  })
 });
 
 // GET /api/listitems/:id Will show a list of the details linked to a specific listitem
-router.get('/listitems/:id', (req, res) => { 
-  User.listitems.find({name: req.params.id}, (err, listitem) => { // Be sure to pass in a name as the id or change to findById
-    res.json(listitem);
+router.get('/listitem/:id', (req, res) => { 
+  User.findById(req.query.uId, (err, user) => { // Be sure to pass in a name as the id or change to findById
+    let arr = [];
+    for (let i = 0; i < user.listitems.length; i++) {
+      if (user.listitems[i].id === req.params.id) {
+        arr.push(user.listitems[i])
+      }
+    }
+    res.send(arr);
+    }).catch(err => console.log(err));
   });
-});
 
-// Post /api/newcategory ONLY FOR US TO USE to add new categories
+// POST /api/newcategory ONLY FOR US TO USE to add new categories
 router.post('/newcategory', (req, res) => {
   Category.create({name: req.body.name}, (err, category) => {
     res.json(category);
@@ -68,25 +80,39 @@ router.post('/categories', (req, res) => {
   });
 });
 
-// POST /categories/:id/listitem Will add a new listitem with ref to category from a hidden input that is from the page name? 
-router.post('/categories/:id/listitem', (req, res) => {
-
-});
-
-// POST /listitem/:id/details Will allow user to post extra details to the specific listitem
-router.post('/listitem/:id/details', (req, res) => {
-
-});
-
-
 // PUT /categories/:cid/listitem/:lid Will edit completed boolean to true in db
 router.put('/categories/:cid/listitem/:lid', (req, res) => {
 
 });
 
-// PUT /listitem/:lid Will edit the bucket list item name from form 
+// PUT /listitem/:lid Will edit the bucket list item name from form on page /listName/edit
 router.put('/listitem/:lid', (req, res) => {
-
+  User.findById(req.query.uId, (err, user) => {
+    console.log(`🦄`,user.listitems)
+    // let arr = [];
+    for ( let i = 0; i < user.listitems.length; i++) {
+      console.log(`🦐`)
+      if(user.listitems[i].id === req.params.lid) {
+        console.log(`🐼`)
+        user.listitems[i].findByIdAndUpdate(req.params.lid, {
+          name: req.body.name,
+          description: req.body.description,
+          photo: req.body.photo
+        }, (err, listitem) => {
+          res.json(listitem)
+        })
+      }
+    }
+  }).catch(err => console.log(err))
 });
 
+// User.findById(req.query.uId, (err, user) => { // Be sure to pass in a name as the id or change to findById
+//   let arr = [];
+//   for (let i = 0; i < user.listitems.length; i++) {
+//     if (user.listitems[i].id === req.params.id) {
+//       arr.push(user.listitems[i])
+//     }
+//   }
+//   res.send(arr);
+//   }).catch(err => console.log(err));
 module.exports = router;
