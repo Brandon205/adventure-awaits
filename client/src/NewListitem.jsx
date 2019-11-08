@@ -1,7 +1,7 @@
-// import React from 'react';
+import React from 'react';
 // import axios from 'axios';
 
-// class NewListitem extends Component {
+class NewListitem extends React.Component {
 //   state = { 
 //     name: '',
 //     description: '',
@@ -65,6 +65,6 @@
 //       </>
 //     );
 //   }
-// }
+}
 
-// export default NewListitem;
+export default NewListitem;
