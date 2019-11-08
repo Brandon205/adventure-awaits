@@ -7,7 +7,7 @@ class Profile extends React.Component {
 
   render() { 
     return ( 
-      <h1>This is the Profile component</h1>
+      <h2>This is the Profile component</h2>
     );
   }
 }
