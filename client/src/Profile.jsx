@@ -13,15 +13,30 @@ class Profile extends React.Component {
         Authorization: `Bearer ${this.props.token}`
       }
     }
-    Axios.get('/api/usercategories', config).then(cats => {
-      this.setState({ categories: cats.data })
+    Axios.get('/api/usercategories', config).then(response => {
+      this.setState({ categories: response.data })
     })
   }
 
   render() { 
+    var mappedCategories;
+    if(!this.state.categories.length) {
+      mappedCategories = <p> Create a New Adventure Above</p>
+    } 
+    // TODO: Make sure this works when /profile/new POST route is complete
+    // else {
+    //   mappedCategories = <li> {categories } </li> 
+    // }
+    
 
     return ( 
-      <Link to="/profile/new"> Create your new Adventure! </Link>
+      <div>
+      <Link to="/profile/new"> Create your new Adventure! </Link> <br /> 
+      <h3>Your Adventures: </h3>
+      <ul>
+      {mappedCategories}
+      </ul>
+      </div>
     );
   }
 }
