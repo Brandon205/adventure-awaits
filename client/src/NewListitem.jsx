@@ -6,10 +6,17 @@ class NewListitem extends React.Component {
     name: '',
     description: '',
     photo: '',
-    categories: []
+    categories: [],
+    selectedCategory: ''
   }
   componentDidMount = () => {
-    axios.get('/api/categories')
+    console.log(this.props.token)
+    let config = {
+      headers: {
+        Authorization: `Bearer ${this.props.token}`
+      }
+    }
+    axios.get('/api/categories', config)
     .then(response => {
       this.setState({
         categories: response.data
@@ -19,22 +26,26 @@ class NewListitem extends React.Component {
 
   handleChange = (e) => {
     this.setState({ 
-      [e.target.name]: e.target.value 
+      [e.target.name]: e.target.value
     });
+  }
+  handleToggleChange = (e) => {
+    this.setState({
+      selectedCategory: e.target.value,
+    })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log('working')
-    var categoriesCopy = [...this.state.categories]
+    
     axios.post('/api/categories', {
       name: this.state.name,
       description: this.state.description,
       photo: this.state.photo,
+      catId: this.state.selectedCategory
     }).then( response => {
-      categoriesCopy.push(response.data)
-      this.setState({
-        categories: categoriesCopy,
+    this.setState({
+        categories: this.state.categories,
         description: '',
         photo: '',
         name: '',
@@ -52,7 +63,7 @@ class NewListitem extends React.Component {
         <input type="hidden" onChange={this.handleChange} name="description" value=""/>
         <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
         
-        <select name="category">
+        <select name="category" onClick={this.handleToggleChange}>
         {mappedCategories}
         </select> <br />
         <input type="submit" value="Submit"/>
