@@ -1,12 +1,14 @@
 import React from 'react';
 import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class Signup extends React.Component {
   state = { 
     name: '',
     email: '',
     password: '',
-    message: ''
+    message: '',
+    redirect: null
   }
 
   handleChange = (e) => {
@@ -23,19 +25,28 @@ class Signup extends React.Component {
       } else {
         localStorage.setItem('mernToken', res.data.token)
         this.props.liftToken(res.data)
+        this.setState({ redirect: <Redirect to={'/'} /> });
       }
     }).catch(err => console.log(err));
   }
 
   render() { 
-    return ( 
-      <div className="App">
+    let output;
+    if (this.state.redirect) {
+      output = this.state.redirect
+    } else {
+      output = (
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="Name" /><br/>
           <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email" /><br/>
           <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" />
           <input type="submit" value="Sign Up"/>
         </form>
+      )
+    }
+    return ( 
+      <div className="App">
+        {output}
       </div>
     );
   }
