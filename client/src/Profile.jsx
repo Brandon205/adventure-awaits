@@ -23,9 +23,10 @@ class Profile extends React.Component {
     if(!this.state.categories.length) {
       mappedCategories = <p> Create a New Adventure Above</p>
     } else {
-      mappedCategories = <li> {this.state.categories}</li> 
+      mappedCategories = <Link to={`/profile/${this.state.categories}`}> <li> {this.state.categories}</li> </Link>
     }
     
+
     return ( 
       <div>
       <Link to="/profile/new"> Create your new Adventure! </Link> <br /> 
