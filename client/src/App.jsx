@@ -61,9 +61,7 @@ class App extends React.Component {
 
   render() { 
     let navContents;
-    let display;
     if (this.state.user) {
-      display = ( <Profile token={this.state.token} /> )
       navContents = (
         <nav>
           <div className="left">
@@ -79,13 +77,6 @@ class App extends React.Component {
         </nav>
       );
     } else {
-      display = (
-        <div>
-          <HomePage />
-          <Signup liftToken={this.liftToken} />
-          <Login liftToken={this.liftToken} />
-        </div>
-      )
       navContents = (
         <nav>
           <div className="left">
@@ -107,12 +98,11 @@ class App extends React.Component {
         <header>
           {navContents}
         </header>
-        {display}
-        <Route exact path="/homepage" component={HomePage} />
+        <Route exact path="/" component={HomePage} />
         <Route exact path="/signup" render={ () => <Signup liftToken={this.liftToken} /> } />
         <Route exact path="/login" render={ () => <Login liftToken={this.liftToken} /> } />
         <Route exact path="/profile" render={ () => <Profile token={this.state.token} /> } />
-        <Route exact path="/listitem/new" component={NewListitem} />
+        <Route exact path="/listitem/new" render={ () => <NewListitem token={this.state.token} /> } />
         <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} /> } />
         <Route exact path="/profile/:id/adventure" render={ (props) => <AdventureDetail {...props} /> } />
         <Route exact path="/profile/:id/edit" render={ (props) => <AdventureEdit {...props} /> } />
