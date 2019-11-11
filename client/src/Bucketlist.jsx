@@ -2,12 +2,13 @@ import React from 'react';
 
 class Bucketlist extends React.Component {
   state = { 
-
+    category: '',
+    listItems: []
   }
 
   render() { 
     return ( 
-      <h1>This is the Bucketlist component</h1>
+      <header>Your {this.state.category} Adventures </header>
     );
   }
 }
