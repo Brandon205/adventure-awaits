@@ -25,15 +25,15 @@ class Bucketlist extends React.Component {
   render() { 
     var mappedListitems;
     var mappedCategory;
+    mappedCategory = this.state.listItems.map((listItem, id) =>  <span key={id}> {listItem.categories[0].name} </span>)
     mappedListitems = this.state.listItems.map((listItem, id) => <Link to="/profile/:id/adventure"> <li key={id}> {listItem.name} </li> </Link> )
                                                                   
-    mappedCategory = this.state.listItems.map((listItem, id) =>  <span key={id}> {listItem.categories[0].name} </span>)
 
     return ( 
       <div>
         <header>Your {mappedCategory} Adventures </header>
         <ul>
-          {mappedListitems}
+          {mappedListitems} <Link to="/profile/:id/edit"> <span> - Edit</span> </Link>
         </ul>
       </div>
     );
