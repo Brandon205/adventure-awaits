@@ -2,64 +2,68 @@ import React from 'react';
 import axios from 'axios';
 
 class NewListitem extends React.Component {
-  state = { 
+state = { 
     name: '',
     description: '',
     photo: '',
     categories: [],
     selectedCategory: ''
-  }
-  componentDidMount = () => {
+}
+componentDidMount = () => {
     console.log(this.props.token)
     let config = {
-      headers: {
+        headers: {
         Authorization: `Bearer ${this.props.token}`
-      }
-    }
-    axios.get('/api/categories', config)
+        }
+}
+axios.get('/api/categories', config)
     .then(response => {
-      this.setState({
+        this.setState({
         categories: response.data
-      })
+        })
     })
-  }
+}
 
-  handleChange = (e) => {
+handleChange = (e) => {
     this.setState({ 
-      [e.target.name]: e.target.value
+        [e.target.name]: e.target.value
     });
-  }
-  handleToggleChange = (e) => {
+}
+handleToggleChange = (e) => {
     this.setState({
-      selectedCategory: e.target.value,
+        selectedCategory: e.target.value,
     })
-  }
+}
 
-  handleSubmit = (e) => {
+handleSubmit = (e) => {
     e.preventDefault()
-    
-    axios.post('/api/categories', {
-      name: this.state.name,
-      description: this.state.description,
-      photo: this.state.photo,
-      catId: this.state.selectedCategory
+    console.log('working')
+    var categoriesCopy = [...this.state.categories]
+    axios.post('/api/categories',{
+        name: this.state.name,
+        description: this.state.description,
+        photo: this.state.photo,
+        categories: this.state.selectedCategory
     }).then( response => {
+        console.log(response.data)
+        categoriesCopy.push(response.data)
     this.setState({
-        categories: this.state.categories,
+        categories: categoriesCopy,
         description: '',
         photo: '',
         name: '',
-      })
+        selectedCategory: ''
+        })
     })
-  }
-  render() { 
-    
+}
+render() { 
+
     const mappedCategories = this.state.categories.map( (category,id) => <option key={id} value={category._id}>{category.name}</option>)
     return ( 
-      <>
-      <h1>This is the NewListitem component</h1>
-      <form onSubmit={this.handleSubmit}>
-      <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your bucketlist"/>
+        <>
+        <h1>This is the NewListitem component</h1>
+        <form onSubmit={this.handleSubmit}>
+        <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your bucketlist"/>
         <input type="hidden" onChange={this.handleChange} name="description" value=""/>
         <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
         
@@ -67,10 +71,10 @@ class NewListitem extends React.Component {
         {mappedCategories}
         </select> <br />
         <input type="submit" value="Submit"/>
-      </form> 
-      </>
+        </form> 
+        </>
     );
-  }
+    }
 }
 
 export default NewListitem;
