@@ -72,7 +72,7 @@ class App extends React.Component {
           </div>
           <div className="right">
             <Link to='/profile'>Profile</Link>{' | '}
-            <Link to='/profile/new'>New</Link>
+            <Link to='/listitem/new'>New</Link>
           </div>
         </nav>
       );
@@ -104,8 +104,8 @@ class App extends React.Component {
         <Route exact path="/profile" render={ () => <Profile token={this.state.token} /> } />
         <Route exact path="/listitem/new" render={ () => <NewListitem token={this.state.token} /> } />
         <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} token={this.state.token} /> } />
-        <Route exact path="/profile/:id/adventure" render={ (props) => <AdventureDetail {...props} /> } />
-        <Route exact path="/profile/:id/edit" render={ (props) => <AdventureEdit {...props} /> } />
+        <Route exact path="/profile/:id/adventure" render={ (props) => <AdventureDetail {...props} token={this.state.token} /> } />
+        <Route exact path="/profile/:id/edit" render={ (props) => <AdventureEdit {...props} token={this.state.token} /> } />
       </Router>
     );
   }
