@@ -56,7 +56,7 @@ router.post('/newcategory', (req, res) => {
 
 // POST /api/categories Will "add" a new category & list item referencing that category
 router.post('/categories', (req, res) => { 
-  User.findById(req.body.uId, (err, user) => {
+  User.findById(req.user._id, (err, user) => {
     user.listitems.push({
       name: req.body.name,
       description: req.body.description,
@@ -78,9 +78,10 @@ router.put('/listitem/:id', (req, res) => {
       name: req.body.name,
       description: req.body.description,
       photo: req.body.photo,
-      completed: false
     });
-    res.json(user.listitems.id(req.params.id));
+    user.save( (err, newInfo) => {
+      res.json(newInfo.listitems.id(req.params.id));
+    });
   }).catch(err => console.log(err))
 });
 
