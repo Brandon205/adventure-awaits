@@ -32,7 +32,7 @@ router.get('/listitems/:cName', (req, res) => {
   User.findById(req.user._id).populate('listitems.categories').exec((err, user) =>{
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
-      if (user.listitems[i].categories[0].name === req.params.cName) {
+      if (user.listitems[i].categories.name === req.params.cName) {
         arr.push(user.listitems[i]);
       }
     }
@@ -43,7 +43,7 @@ router.get('/listitems/:cName', (req, res) => {
 // GET /api/listitems/:id Will show a list of the details linked to a specific listitem
 router.get('/listitem/:id', (req, res) => { 
   User.findById(req.user._id, (err, user) => { // Be sure to pass in a name as the id or change to findById
-    res.send(user.listitems.id(req.params.id));
+    res.json(user.listitems.id(req.params.id));
     }).catch(err => console.log(err));
   });
 
