@@ -38,23 +38,28 @@ handleToggleChange = (e) => {
 handleSubmit = (e) => {
     e.preventDefault()
     console.log('working')
-    var categoriesCopy = [...this.state.categories]
+    let config = {
+        headers: {
+            Authorization: `Bearer ${this.props.token}`
+        }
+    }
     axios.post('/api/categories',{
         name: this.state.name,
         description: this.state.description,
         photo: this.state.photo,
-        categories: this.state.selectedCategory
-    }).then( response => {
-        console.log(response.data)
-        categoriesCopy.push(response.data)
-    this.setState({
-        categories: categoriesCopy,
-        description: '',
-        photo: '',
-        name: '',
-        selectedCategory: ''
+        catId: this.state.selectedCategory,
+        
+    },config).then( response => {
+        this.setState({
+            categories: this.state.categories,
+            description: this.state.description,
+            photo: this.state.photo,
+            name: this.state.name,
+            selectedCategory: this.state.selectedCategory
         })
     })
+    console.log(`😊`,this.state.categories)
+    console.log(`🦄`,this.state.name)
 }
 render() { 
 
