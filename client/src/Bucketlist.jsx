@@ -16,10 +16,8 @@ class Bucketlist extends React.Component {
       }
     }
     Axios.get(`/api/listitems/${this.props.match.params.cName}`, config).then(response => {
-      console.log(`🙉`, response.data)
       this.setState({ category: response.data, listItems: response.data })
     })
-    // console.log( `🐼`, this.state.listItems.categories)
   }
 
   render() { 
