@@ -14,6 +14,7 @@ class Profile extends React.Component {
       }
     }
     Axios.get('/api/usercategories', config).then(response => {
+      console.log(response.data)
       this.setState({ categories: response.data })
     })
   }
