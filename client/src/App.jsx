@@ -103,7 +103,7 @@ class App extends React.Component {
         <Route exact path="/login" render={ () => <Login liftToken={this.liftToken} /> } />
         <Route exact path="/profile" render={ () => <Profile token={this.state.token} /> } />
         <Route exact path="/listitem/new" render={ () => <NewListitem token={this.state.token} /> } />
-        <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} /> } />
+        <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} token={this.state.token} /> } />
         <Route exact path="/profile/:id/adventure" render={ (props) => <AdventureDetail {...props} /> } />
         <Route exact path="/profile/:id/edit" render={ (props) => <AdventureEdit {...props} /> } />
       </Router>
