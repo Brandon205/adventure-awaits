@@ -1,13 +1,81 @@
 import React from 'react';
+import axios from 'axios';
 
 class AdventureDetail extends React.Component {
   state = { 
+    details: null,
+    selectedImage: null,
+    displayImage: null
+  }
 
+  componentDidMount() {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${this.props.token}`
+      }
+    }
+    axios.get(`/api/listitem/${this.props.token}`, config)
+    .then(response => {
+      this.setState({
+        details: response.data
+      })
+    })
+  }
+
+  handleFileChange = (e) => {
+    this.setState({ selectedImage: e.target.files[0] })
+  }
+
+  handleImageSubmit = () => {
+    const fd = new FormData();
+    fd.append('file', this.state.selectedImage);
+    fd.append('upload_preset', 'namr3phs');
+
+    axios({
+      url: 'https://api.cloudinary.com/v1_1/brandon205/upload',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application-x-www-form-urlencoded'
+      },
+      data: fd
+    }).then(res => {
+      console.log('Sent');
+      this.setState({ displayImage: res.data.secure_url });;
+    }).catch(err => console.log(err));
   }
 
   render() { 
-    return ( 
-      <h1>This is the AdventureDetail component</h1>
+    let content;
+    let re = /^https/;
+    if (this.state.details) {
+      if (this.state.details.photo.match(re)) {
+        content = (
+          <div className="App">
+            <h1>{this.state.details.name}</h1>
+            <p>{this.state.details.description}</p>
+            <img src={this.state.photo} alt="Event Photo" />
+          </div>
+        )
+      } else {
+        content = (
+        <div className="App">
+          <h1>{this.state.details.name}</h1>
+          <p>{this.state.details.description}</p>
+          <input type="file" onChange={this.handleFileChange} />
+          <button onClick={this.handleImageSubmit}></button>
+        </div>
+        )
+      }
+    } else {
+      content = (
+        <p>Loading...</p>
+      )
+    }
+
+    return (
+      <div className="App">
+        {content}
+      </div>
     );
   }
 }
