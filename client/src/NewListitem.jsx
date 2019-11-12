@@ -19,6 +19,7 @@ componentDidMount = () => {
 }
 Axios.get('/api/categories', config)
     .then(response => {
+
         this.setState({
         categories: response.data
         })
@@ -47,9 +48,8 @@ handleSubmit = (e) => {
         name: this.state.name,
         description: this.state.description,
         photo: this.state.photo,
-        catId: this.state.selectedCategory,
-        
-    },config).then( response => {
+        catId: this.state.selectedCategory 
+    }, config).then( response => {
         this.setState({
             categories: this.state.categories,
             description: this.state.description,
@@ -60,6 +60,7 @@ handleSubmit = (e) => {
         })
     })
 }
+
 render() { 
 
     const mappedCategories = this.state.categories.map( (category,id) => <option key={id} value={category._id}>{category.name}</option>)
@@ -69,9 +70,8 @@ render() {
         <form onSubmit={this.handleSubmit}>
         Add Item To Your List <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your bucketlist"/> <br />
         <input type="hidden" onChange={this.handleChange} name="description" value=""/>
-        <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
-        
-        <select name="category" onClick={this.handleToggleChange}>
+        <input type="hidden" onChange={this.handleChange} name="photo" value=""/>
+        <select name="category" onChange={this.handleToggleChange}>
         {mappedCategories}
         </select> <br />
         <input type="submit" value="Submit"/>

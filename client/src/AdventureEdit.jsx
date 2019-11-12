@@ -6,9 +6,12 @@ class AdventureEdit extends React.Component {
     name: '',
     description: '',
     photo:'',
-    listitem: []
+    listitem: [],
+    category: null,
+    redirect: ''
   }
   componentDidMount = () => {
+    console.log(this.props.token)
     let config = {
       headers: {
       Authorization: `Bearer ${this.props.token}`
@@ -16,8 +19,13 @@ class AdventureEdit extends React.Component {
     }
     Axios.get(`/api/listitem/${this.props.match.params.id}`, config)
     .then(response => {
+      console.log(response.data)
       this.setState({
-        listitem: response.data
+        listitem: response.data,
+        name:  response.data.name,
+        description: response.data.description,
+        photo: response.data.description,
+        category: response.data.categories[0]
       })
     })
   }
@@ -29,17 +37,23 @@ class AdventureEdit extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-
+    let config = {
+      headers: {
+      Authorization: `Bearer ${this.props.token}`
+      }
+    }
     Axios.put(`/api/listitem/${this.props.match.params.id}`, {
+        _id: this.props.match.params.id,
         name: this.state.name,
         description: this.state.description,
         photo: this.state.photo,
-    }).then( response => {
+        catId: this.state.category
+    }, config).then( response => {
     this.setState({
         description: '',
         photo: '',
         name: '',
-        redirect: <Redirect to={`/profile/${this.props.match.params.id}`} />
+        redirect: <Redirect to={`/profile/${this.props.match.params.cName}/adventure`} />
         })
     })
 }
