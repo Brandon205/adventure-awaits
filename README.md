@@ -1,8 +1,8 @@
 # Adventure Awaits 
   List out your adventures! Adventure Awaits is an app where you can easily organize your future adventures. 
-
+----
 ## Test User Login: email@email.com | password
-
+---- 
 ## Team Members
 [Brandon](https://github.com/Brandon205) - Git master  
 [Abdi](https://github.com/Abdi208) - Web Developer   
@@ -16,11 +16,22 @@ Imlement throughtful user stories
 Be deployed online  
 
 ## Installation Instructions 
+* Fork and clone this repository:   
+* Run `npm install` to install dependencies in both client and main project folder
+  * Use `nodemon` to run the application in the main project folder
+* Create .env file, which will need to include: 
+  * `PORT=3001`
+  * `JWT_SECRET` (you determine this for user token creation)
+  * `MONGODB_URL=mongodb://localhost/project`
+* View in browser 
 
 ## Technologies Used 
   -MongoDB/Mongoose  
   -Experess.js  
-  -React  
+  -React    
+    -Key Modules:  
+      -Axios
+      -React-router-dom
   -Node.js  
 
 ## User Stories 
@@ -70,6 +81,8 @@ Be deployed online
   Some goals for the future:
     1. Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests
     2. Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!) 
+
+    
 
 
 
