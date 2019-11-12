@@ -22,7 +22,7 @@ class Bucketlist extends React.Component {
   render() { 
     var mappedListitems;
     if (this.state.listItems.length > 0 && this.state.category.length > 0) {
-      mappedListitems = this.state.listItems.map((listItem, id) => <div key={id}><li><Link to={`/profile/${listItem._id}/adventure`}>{listItem.name} - </Link> <Link to={`/profile/${listItem._id}/edit`}>Edit</Link> </li> </div>)
+      mappedListitems = this.state.listItems.map((listItem, id) => <div key={id}><li><Link to={`/profile/${listItem._id}/adventure/${this.props.match.params.cName}`}>{listItem.name}</Link> - <Link to={`/profile/${listItem._id}/edit/${this.props.match.params.cName}`}>Edit</Link> </li> </div>)
     } else {
       mappedListitems = <li>Loading...</li>
     }
