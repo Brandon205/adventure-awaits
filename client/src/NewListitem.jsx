@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class NewListitem extends React.Component {
 state = { 
@@ -7,16 +8,16 @@ state = {
     description: '',
     photo: '',
     categories: [],
-    selectedCategory: ''
+    selectedCategory: '',
+    redirect: ''
 }
 componentDidMount = () => {
-    console.log(this.props.token)
     let config = {
         headers: {
         Authorization: `Bearer ${this.props.token}`
         }
 }
-axios.get('/api/categories', config)
+Axios.get('/api/categories', config)
     .then(response => {
         this.setState({
         categories: response.data
@@ -37,13 +38,12 @@ handleToggleChange = (e) => {
 
 handleSubmit = (e) => {
     e.preventDefault()
-    console.log('working')
     let config = {
         headers: {
             Authorization: `Bearer ${this.props.token}`
         }
     }
-    axios.post('/api/categories',{
+    Axios.post('/api/categories',{
         name: this.state.name,
         description: this.state.description,
         photo: this.state.photo,
@@ -55,20 +55,19 @@ handleSubmit = (e) => {
             description: this.state.description,
             photo: this.state.photo,
             name: this.state.name,
-            selectedCategory: this.state.selectedCategory
+            selectedCategory: this.state.selectedCategory,
+            redirect: <Redirect to={`/profile`} />
         })
     })
-    console.log(`😊`,this.state.categories)
-    console.log(`🦄`,this.state.name)
 }
 render() { 
 
     const mappedCategories = this.state.categories.map( (category,id) => <option key={id} value={category._id}>{category.name}</option>)
     return ( 
         <>
-        <h1>This is the NewListitem component</h1>
+        <h1>Create Your Adventure Below </h1>
         <form onSubmit={this.handleSubmit}>
-        <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your bucketlist"/>
+        Add Item To Your List <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your bucketlist"/> <br />
         <input type="hidden" onChange={this.handleChange} name="description" value=""/>
         <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
         
@@ -77,6 +76,7 @@ render() {
         </select> <br />
         <input type="submit" value="Submit"/>
         </form> 
+        {this.state.redirect}
         </>
     );
     }

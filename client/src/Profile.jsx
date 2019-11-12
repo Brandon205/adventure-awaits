@@ -23,17 +23,17 @@ class Profile extends React.Component {
     if(this.state.categories.length) {
       mappedCategories = this.state.categories.map((category, id) => <li key={id}> <Link to={`/profile/${category}`}>{category}</Link></li> )
     } else {
-      mappedCategories = <p>Create a New Adventure Above</p>
+      mappedCategories = <p>Create a New Adventure Below</p>
     }
     
 
     return ( 
       <div>
-      <Link to="/listitem/new"> Create your new Adventure! </Link> <br /> 
-      <h3>Your Adventures: </h3>
+      <h3>Your Categories: </h3>
       <ul>
       {mappedCategories}
       </ul>
+      <Link to="/listitem/new"> Create your new Adventure! </Link> <br /> 
       </div>
     );
   }

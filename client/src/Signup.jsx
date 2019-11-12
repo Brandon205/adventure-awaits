@@ -25,7 +25,7 @@ class Signup extends React.Component {
       } else {
         localStorage.setItem('mernToken', res.data.token)
         this.props.liftToken(res.data)
-        this.setState({ redirect: <Redirect to={'/homepage'} /> });
+        this.setState({ redirect: <Redirect to={'/'} /> });
       }
     }).catch(err => console.log(err));
   }
@@ -37,15 +37,16 @@ class Signup extends React.Component {
     } else {
       output = (
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="Name" /><br/>
-          <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email" /><br/>
-          <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" />
+          Name: <input type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="Name" /><br/>
+          Email: <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email" /><br/>
+          Password: <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" /> <br />
           <input type="submit" value="Sign Up"/>
         </form>
       )
     }
     return ( 
       <div className="App">
+        <h2>Sign Up Here! </h2>
         {output}
       </div>
     );
