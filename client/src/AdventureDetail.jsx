@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class AdventureDetail extends React.Component {
@@ -15,9 +15,8 @@ class AdventureDetail extends React.Component {
         Authorization: `Bearer ${this.props.token}`
       }
     }
-    axios.get(`/api/listitem/${this.props.match.params.id}`, config)
+    Axios.get(`/api/listitem/${this.props.match.params.id}`, config)
     .then(response => {
-      console.log(response.data);
       this.setState({
         details: response.data
       })
@@ -34,7 +33,7 @@ class AdventureDetail extends React.Component {
     fd.append('file', this.state.selectedImage);
     fd.append('upload_preset', 'namr3phs');
 
-    axios({
+    Axios({
       url: 'https://api.cloudinary.com/v1_1/brandon205/upload',
       method: 'POST',
       headers: {
@@ -42,13 +41,12 @@ class AdventureDetail extends React.Component {
       },
       data: fd
     }).then(res => {
-      console.log('Sent it');
       let config = {
         headers: {
           Authorization: `Bearer ${this.props.token}`
         }
       }
-      axios.put(`/api/listitem/${this.props.match.params.id}`, { _id: this.props.match.params.id, name: this.state.details.name, description: this.state.details.description, photo: res.data.secure_url, catId: this.state.details.categories[0] }, config)
+      Axios.put(`/api/listitem/${this.props.match.params.id}`, { _id: this.props.match.params.id, name: this.state.details.name, description: this.state.details.description, photo: res.data.secure_url, catId: this.state.details.categories[0] }, config)
       .then(response => {
         this.setState({ displayImage: res.data.secure_url });;
       })
@@ -59,36 +57,41 @@ class AdventureDetail extends React.Component {
     let content;
     let re = /^https/;
     if (this.state.details) {
+      // If there are details on the page, continue from here...
       if (this.state.details.photo.match(re)) {
+        // If there are deatils on the page and if the photo string starts with 'https', display details listed below 
         content = (
           <div className="App">
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
-            <img src={this.state.photo} alt="Event" />
+            <img src={this.state.photo} alt="Event" /> <br/>
             <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
           </div>
         )
       } else if (this.state.displayImage){
+        // To make uploaded image display immediately after user uploads it 
         content = (
         <div className="App">
           <h1>{this.state.details.name}</h1>
           <p>{this.state.details.description}</p>
-          <img src={this.state.displayImage} alt="Event"/>
+          <img src={this.state.displayImage} alt="Event"/> <br/>
           <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
         </div>
         )
       } else {
+        // If there are no displayed images and no photo in the database, will display the form 
         content = (
           <div className="App">
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
             <input type="file" onChange={this.handleFileChange} />
-            <button onClick={this.handleImageSubmit}>Add Photo</button><br />
+            <button onClick={this.handleImageSubmit}>Add Photo</button> <br />
             <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
           </div>
         )
       }
     } else {
+      // Only when component did mount hasn't loaded
       content = (
         <p>Loading...</p>
       )
