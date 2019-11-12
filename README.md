@@ -5,8 +5,8 @@
 
 ## Team Members
 [Brandon](https://github.com/Brandon205) - Git master  
-[Abdi] (https://github.com/Abdi208) - Web Developer 
-[Ari] (https://github.com/AriG150) - Web Developer     
+[Abdi](https://github.com/Abdi208) - Web Developer   
+[Ari](https://github.com/AriG150) - Web Developer       
 
 ## Requirements
 Build a full-stack application making your own backend and frontend   
@@ -18,10 +18,10 @@ Be deployed online
 ## Installation Instructions 
 
 ## Technologies Used 
-  -MongoDB/Mongoose
-  -Experess.js
-  -React
-  -Node.js
+  -MongoDB/Mongoose  
+  -Experess.js  
+  -React  
+  -Node.js  
 
 ## User Stories 
 -As a user I want to...  
@@ -32,13 +32,13 @@ Be deployed online
 
 ## Development Sprints and Process 
   ### Sprint 1 
-    Our first sprint all about planning out app in detai. We spend the day thinking about the user story, planning the models and how they would relate to one another, wireframing, and our backend routes. We spent some time discussing the distribution of responsibities and Brandon volunteered to be our Git Master for the project. 
+  Our first sprint all about planning out app in detai. We spend the day thinking about the user story, planning the models and how they would relate to one another, wireframing, and our backend routes. We spent some time discussing the distribution of responsibities and Brandon volunteered to be our Git Master for the project. 
   
   ### Sprint 2 
-    We spent an entire work day completing our back end routes and models. Originally we did not include Mongoose's .id that is used with embedded elements in order to utilize a 'findById' so our routes all included many for loops, but we were able to simplify them after learning about the tool above. We verified our routes work via Postman and ended the day on a high note. 
+  We spent an entire work day completing our back end routes and models. Originally we did not include Mongoose's .id that is used with embedded elements in order to utilize a 'findById' so our routes all included many for loops, but we were able to simplify them after learning about the tool above. We verified our routes work via Postman and ended the day on a high note. 
 
   ### Sprint 3 
-    Our next spring surrounded React and creating our front end components. We spent 2.5 days incorporating the back end to our front end, and editing our basic UX. 
+  Our next spring surrounded React and creating our front end components. We spent 2.5 days incorporating the back end to our front end, and editing our basic UX. 
 
   ## Sprint 4 
 
@@ -68,8 +68,8 @@ Be deployed online
 
 ## Things to Note and Changes for the Future:
   Some goals for the future:
-    -Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests
-    -Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!) 
+    1. Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests
+    2. Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!) 
 
 
 
