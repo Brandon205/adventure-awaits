@@ -14,8 +14,9 @@ class AdventureDetail extends React.Component {
         Authorization: `Bearer ${this.props.token}`
       }
     }
-    axios.get(`/api/listitem/${this.props.token}`, config)
+    axios.get(`/api/listitem/${this.props.match.params.id}`, config)
     .then(response => {
+      console.log(response.data);
       this.setState({
         details: response.data
       })
@@ -26,7 +27,8 @@ class AdventureDetail extends React.Component {
     this.setState({ selectedImage: e.target.files[0] })
   }
 
-  handleImageSubmit = () => {
+  handleImageSubmit = (e) => {
+    e.preventDefault()
     const fd = new FormData();
     fd.append('file', this.state.selectedImage);
     fd.append('upload_preset', 'namr3phs');
@@ -39,8 +41,16 @@ class AdventureDetail extends React.Component {
       },
       data: fd
     }).then(res => {
-      console.log('Sent');
-      this.setState({ displayImage: res.data.secure_url });;
+      console.log('Sent it');
+      let config = {
+        headers: {
+          Authorization: `Bearer ${this.props.token}`
+        }
+      }
+      axios.put(`/api/listitem/${this.props.match.params.id}`, { _id: this.props.match.params.id, name: this.state.details.name, description: this.state.details.description, photo: res.data.secure_url, catId: this.state.details.categories[0] }, config)
+      .then(response => {
+        this.setState({ displayImage: res.data.secure_url });;
+      })
     }).catch(err => console.log(err));
   }
 
@@ -56,14 +66,22 @@ class AdventureDetail extends React.Component {
             <img src={this.state.photo} alt="Event" />
           </div>
         )
-      } else {
+      } else if (this.state.displayImage){
         content = (
         <div className="App">
           <h1>{this.state.details.name}</h1>
           <p>{this.state.details.description}</p>
-          <input type="file" onChange={this.handleFileChange} />
-          <button onClick={this.handleImageSubmit}></button>
+          <img src={this.state.displayImage} alt="Event"/>
         </div>
+        )
+      } else {
+        content = (
+          <div className="App">
+            <h1>{this.state.details.name}</h1>
+            <p>{this.state.details.description}</p>
+            <input type="file" onChange={this.handleFileChange} />
+            <button onClick={this.handleImageSubmit}>Add Photo</button>
+          </div>
         )
       }
     } else {
