@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
 class AdventureEdit extends React.Component {
   state = { 
     name: '',
@@ -16,8 +15,12 @@ class AdventureEdit extends React.Component {
     }
     axios.get(`/api/listitem/${this.props.match.params.id}`, config)
     .then(response => {
+      console.log(response.data)
       this.setState({
-        listitem: response.data
+        listitem: response.data,
+        name:  response.data.name,
+        description: response.data.description,
+        photo: response.data.description
       })
     })
   }
@@ -29,8 +32,13 @@ class AdventureEdit extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-
-    axios.put(`/api/listitem/${this.props.match.params.id}`, {
+    let config = {
+      headers: {
+      Authorization: `Bearer ${this.props.token}`
+      }
+    }
+    axios.put(`/api/listitem/${this.props.match.params.id}`, config, {
+        _id:this.props.match.params.id,
         name: this.state.name,
         description: this.state.description,
         photo: this.state.photo,
@@ -39,7 +47,6 @@ class AdventureEdit extends React.Component {
         description: '',
         photo: '',
         name: '',
-        redirect: <Redirect to={`/profile/${this.props.match.params.id}`} />
         })
     })
 }

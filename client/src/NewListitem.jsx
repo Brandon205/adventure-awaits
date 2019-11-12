@@ -52,10 +52,10 @@ handleSubmit = (e) => {
     },config).then( response => {
         this.setState({
             categories: this.state.categories,
-            description: this.state.description,
-            photo: this.state.photo,
-            name: this.state.name,
-            selectedCategory: this.state.selectedCategory
+            description: '',
+            photo: '',
+            name: '',
+            selectedCategory: ''
         })
     })
     console.log(`😊`,this.state.categories)
@@ -72,7 +72,7 @@ render() {
         <input type="hidden" onChange={this.handleChange} name="description" value=""/>
         <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
         
-        <select name="category" onClick={this.handleToggleChange}>
+        <select name="category" onChange={this.handleToggleChange}>
         {mappedCategories}
         </select> <br />
         <input type="submit" value="Submit"/>
