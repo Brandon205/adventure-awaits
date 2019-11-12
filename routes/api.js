@@ -77,6 +77,7 @@ router.put('/listitem/:id', (req, res) => {
       name: req.body.name,
       description: req.body.description,
       photo: req.body.photo,
+      categories: [req.body.catId]
     });
     user.save( (err, newInfo) => {
       res.json(newInfo.listitems.id(req.params.id));
