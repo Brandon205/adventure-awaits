@@ -18,6 +18,7 @@ componentDidMount = () => {
 }
 axios.get('/api/categories', config)
     .then(response => {
+
         this.setState({
         categories: response.data
         })

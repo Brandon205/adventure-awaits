@@ -54,7 +54,7 @@ class AdventureEdit extends React.Component {
         description: '',
         photo: '',
         name: '',
-        redirect: <Redirect to={`/profile/${this.props.match.params.id}/adventure`} />
+        redirect: <Redirect to={`/profile/${this.props.match.params.cName}/adventure`} />
         })
     })
 }
@@ -64,7 +64,7 @@ class AdventureEdit extends React.Component {
 
       <h1>This is the AdventureEdit component</h1>
       <form onSubmit={this.handleSubmit}>
-      Name: <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your bucketlist"/><br />
+      Name: <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
       Description: <input type="text" onChange={this.handleChange} name="description" value={this.state.description}/><br />
       <input type="hidden" onChange={this.handleChange} name="photo" value={this.state.photo}/> 
       <input type="submit" value="Submit"/>
