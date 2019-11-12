@@ -14,23 +14,22 @@ class Profile extends React.Component {
       }
     }
     Axios.get('/api/usercategories', config).then(response => {
-      console.log(response.data)
       this.setState({ categories: response.data })
     })
   }
 
   render() { 
     var mappedCategories;
-    if(!this.state.categories.length) {
-      mappedCategories = <p> Create a New Adventure Above</p>
+    if(this.state.categories.length) {
+      mappedCategories = this.state.categories.map((category, id) => <li key={id}> <Link to={`/profile/${category}`}>{category}</Link></li> )
     } else {
-      mappedCategories = <Link to={`/profile/${this.state.categories}`}> <li> {this.state.categories}</li> </Link>
+      mappedCategories = <p>Create a New Adventure Above</p>
     }
     
 
     return ( 
       <div>
-      <Link to="/profile/new"> Create your new Adventure! </Link> <br /> 
+      <Link to="/listitem/new"> Create your new Adventure! </Link> <br /> 
       <h3>Your Adventures: </h3>
       <ul>
       {mappedCategories}

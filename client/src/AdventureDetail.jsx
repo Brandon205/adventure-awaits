@@ -53,7 +53,7 @@ class AdventureDetail extends React.Component {
           <div className="App">
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
-            <img src={this.state.photo} alt="Event Photo" />
+            <img src={this.state.photo} alt="Event" />
           </div>
         )
       } else {
