@@ -53,7 +53,7 @@ class AdventureEdit extends React.Component {
         description: '',
         photo: '',
         name: '',
-        redirect: <Redirect to={`/profile/${this.props.match.params.cName}/adventure`} />
+        redirect: <Redirect to={`/profile/${this.props.match.params.cName}`} />
         })
     })
 }

@@ -72,6 +72,7 @@ render() {
         <input type="hidden" onChange={this.handleChange} name="description" value=""/>
         <input type="hidden" onChange={this.handleChange} name="photo" value=""/>
         <select name="category" onChange={this.handleToggleChange}>
+        <option>Please Select Category:</option>
         {mappedCategories}
         </select> <br />
         <input type="submit" value="Submit"/>
