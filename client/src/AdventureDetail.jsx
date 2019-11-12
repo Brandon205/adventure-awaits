@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class AdventureDetail extends React.Component {
   state = { 
@@ -64,6 +65,7 @@ class AdventureDetail extends React.Component {
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
             <img src={this.state.photo} alt="Event" />
+            <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
           </div>
         )
       } else if (this.state.displayImage){
@@ -72,6 +74,7 @@ class AdventureDetail extends React.Component {
           <h1>{this.state.details.name}</h1>
           <p>{this.state.details.description}</p>
           <img src={this.state.displayImage} alt="Event"/>
+          <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
         </div>
         )
       } else {
@@ -80,7 +83,8 @@ class AdventureDetail extends React.Component {
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
             <input type="file" onChange={this.handleFileChange} />
-            <button onClick={this.handleImageSubmit}>Add Photo</button>
+            <button onClick={this.handleImageSubmit}>Add Photo</button><br />
+            <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
           </div>
         )
       }
