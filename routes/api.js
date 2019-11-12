@@ -19,7 +19,6 @@ router.get('/usercategories', (req, res) => {
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
       if (user.listitems[i].categories.length > 0 && !arr.includes(user.listitems[i].categories[0].name)) {
-        console.log(user.listitems[i].categories[0].name);
         arr.push(user.listitems[i].categories[0].name)
       }
     }
@@ -32,7 +31,7 @@ router.get('/listitems/:cName', (req, res) => {
   User.findById(req.user._id).populate('listitems.categories').exec((err, user) =>{
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
-      if (user.listitems[i].categories[0].name === req.params.cName) {
+      if (user.listitems[i].categories.length > 0 && user.listitems[i].categories[0].name === req.params.cName) {
         arr.push(user.listitems[i]);
       }
     }
