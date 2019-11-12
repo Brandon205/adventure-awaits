@@ -66,6 +66,11 @@ Be deployed online
 | Category | name | 
 
 
+## Things to Note and Changes for the Future:
+  Some goals for the future:
+    -Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests
+    -Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!) 
+
 
 
 
