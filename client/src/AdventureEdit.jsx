@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import { Redirect } from 'react-router-dom'
 class AdventureEdit extends React.Component {
   state = { 
@@ -17,7 +17,7 @@ class AdventureEdit extends React.Component {
       Authorization: `Bearer ${this.props.token}`
       }
     }
-    axios.get(`/api/listitem/${this.props.match.params.id}`,config)
+    Axios.get(`/api/listitem/${this.props.match.params.id}`, config)
     .then(response => {
       console.log(response.data)
       this.setState({
@@ -37,19 +37,18 @@ class AdventureEdit extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log('working')
     let config = {
       headers: {
       Authorization: `Bearer ${this.props.token}`
       }
     }
-    axios.put(`/api/listitem/${this.props.match.params.id}`,{
-        _id:this.props.match.params.id,
+    Axios.put(`/api/listitem/${this.props.match.params.id}`, {
+        _id: this.props.match.params.id,
         name: this.state.name,
         description: this.state.description,
         photo: this.state.photo,
         catId: this.state.category
-    },config).then( response => {
+    }, config).then( response => {
     this.setState({
         description: '',
         photo: '',
@@ -61,12 +60,11 @@ class AdventureEdit extends React.Component {
   render() { 
     return ( 
       <>
-
-      <h1>This is the AdventureEdit component</h1>
+      <h3>Edit Your Adventure</h3>
       <form onSubmit={this.handleSubmit}>
-      Name: <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
-      Description: <input type="text" onChange={this.handleChange} name="description" value={this.state.description}/><br />
-      <input type="hidden" onChange={this.handleChange} name="photo" value={this.state.photo}/> 
+      Adventure: <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
+      Description of the Completed Adventure: <input type="text" onChange={this.handleChange} name="description" value={this.state.description} placeholder="How did it go?"/><br />
+      <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
       <input type="submit" value="Submit"/>
       </form> 
       {this.state.redirect}

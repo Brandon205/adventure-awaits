@@ -29,7 +29,7 @@ class Bucketlist extends React.Component {
 
     return ( 
       <div>
-        <header>Your {this.props.match.params.cName} Adventures </header>
+        <h3>Your {this.props.match.params.cName} Adventures </h3>
         <ul>
           {mappedListitems}
         </ul>

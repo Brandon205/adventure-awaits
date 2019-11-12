@@ -23,7 +23,7 @@ class Login extends React.Component {
       } else {
         localStorage.setItem('mernToken', res.data.token);
         this.props.liftToken(res.data);
-        this.setState({ redirect: <Redirect to={'/homepage'} /> });
+        this.setState({ redirect: <Redirect to={'/'} /> });
       }
     }).catch(err => console.log(err)); // Rate limiter catch block
   }
@@ -35,8 +35,8 @@ class Login extends React.Component {
     } else {
       output = (
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email" />
-          <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" />
+          Email: <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email" /> <br />
+          Password: <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" /> <br />
           <input type="submit" value="Login"/>
         </form>
       )

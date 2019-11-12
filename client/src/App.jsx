@@ -68,7 +68,7 @@ class App extends React.Component {
             <button onClick={this.logout}>Logout</button>
           </div>
           <div className="middle">
-            <Link to="/homepage">Adventure Awaits</Link>
+            <Link to="/">Adventure Awaits</Link>
           </div>
           <div className="right">
             <Link to='/profile'>Profile</Link>{' | '}
@@ -84,7 +84,7 @@ class App extends React.Component {
             <Link to='/login'>Login</Link>
           </div>
           <div className="middle">
-            <Link to="/homepage">Adventure Awaits</Link>
+            <Link to="/">Adventure Awaits</Link>
           </div>
           <div className="right">
             <p>Welcome!</p>
@@ -98,7 +98,7 @@ class App extends React.Component {
         <header>
           {navContents}
         </header>
-        <Route exact path="/homepage" component={HomePage} />
+        <Route exact path="/" component={HomePage} />
         <Route exact path="/signup" render={ () => <Signup liftToken={this.liftToken} /> } />
         <Route exact path="/login" render={ () => <Login liftToken={this.liftToken} /> } />
         <Route exact path="/profile" render={ () => <Profile token={this.state.token} /> } />
