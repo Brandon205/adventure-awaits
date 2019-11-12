@@ -1,13 +1,12 @@
 import React from 'react';
 import Axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 class Bucketlist extends React.Component {
   state = { 
     category: [],
     listItems: []
   }
-
 
   componentDidMount = () => {
     let config = {
@@ -22,16 +21,17 @@ class Bucketlist extends React.Component {
 
   render() { 
     var mappedListitems;
-    var mappedCategory;
-    mappedCategory = this.state.listItems.map((listItem, id) =>  <span key={id}> {listItem.categories[0].name} </span>)
-    mappedListitems = this.state.listItems.map((listItem, id) => <Link to="/profile/:id/adventure"> <li key={id}> {listItem.name} </li> </Link> )
-                                                                  
+    if (this.state.listItems.length > 0 && this.state.category.length > 0) {
+      mappedListitems = this.state.listItems.map((listItem, id) => <div key={id}><li><Link to={`/profile/${listItem._id}/adventure`}>{listItem.name} - </Link> <Link to={`/profile/${listItem._id}/edit`}>Edit</Link> </li> </div>)
+    } else {
+      mappedListitems = <li>Loading...</li>
+    }
 
     return ( 
       <div>
-        <header>Your {mappedCategory} Adventures </header>
+        <header>Your {this.props.match.params.cName} Adventures </header>
         <ul>
-          {mappedListitems} <Link to="/profile/:id/edit"> <span> - Edit</span> </Link>
+          {mappedListitems}
         </ul>
       </div>
     );
