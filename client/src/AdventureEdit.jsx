@@ -5,22 +5,25 @@ class AdventureEdit extends React.Component {
     name: '',
     description: '',
     photo:'',
-    listitem: []
+    listitem: [],
+    category: []
   }
   componentDidMount = () => {
+    console.log(this.props.token)
     let config = {
       headers: {
       Authorization: `Bearer ${this.props.token}`
       }
     }
-    axios.get(`/api/listitem/${this.props.match.params.id}`, config)
+    axios.get(`/api/listitem/${this.props.match.params.id}`,config)
     .then(response => {
       console.log(response.data)
       this.setState({
         listitem: response.data,
         name:  response.data.name,
         description: response.data.description,
-        photo: response.data.description
+        photo: response.data.description,
+        categories: response.data.categories
       })
     })
   }
@@ -32,17 +35,19 @@ class AdventureEdit extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    console.log('working')
     let config = {
       headers: {
       Authorization: `Bearer ${this.props.token}`
       }
     }
-    axios.put(`/api/listitem/${this.props.match.params.id}`, config, {
+    axios.put(`/api/listitem/${this.props.match.params.id}`,{
         _id:this.props.match.params.id,
         name: this.state.name,
         description: this.state.description,
         photo: this.state.photo,
-    }).then( response => {
+        catId: this.state.categories
+    },config).then( response => {
     this.setState({
         description: '',
         photo: '',
