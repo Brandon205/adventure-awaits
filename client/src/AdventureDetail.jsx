@@ -64,7 +64,7 @@ class AdventureDetail extends React.Component {
           <div className="App">
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
-            <img src={this.state.photo} alt="Event" /> <br/>
+            <img src={this.state.details.photo} alt="Event" /> <br/>
             <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
           </div>
         )
