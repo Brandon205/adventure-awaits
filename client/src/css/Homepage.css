@@ -1,0 +1,13 @@
+
+.homepage-content {
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  /* margin-right: 4.5em; */
+  max-width: 400px;
+}
+
+.AppName {
+  font-family: 'Patua One', cursive;
+}
