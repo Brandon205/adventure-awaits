@@ -5,28 +5,26 @@
   /* flex-direction: row; */
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: 35em;
+  margin-left: 70vh;
   max-width: 55%;
-  
 }
 
 .AppName {
   font-family: 'Patua One', cursive;
   font-size: 6em;
-  /* margin: 0 auto; */
-  padding: 10px;
-  /* margin: 10px; */
+
+  /* padding: 10vh; */
 }
 
 .homepage-link {
   font-size: 1.5em;
   display: flex;
-  justify-content: flex-start;
-  margin-left: 38em;
+  justify-content: center;
   display: inline-block;
-  padding: .25em;
+  margin-left: 35vw;
+  padding: 1vw;
 }
 
-.main-text {
-  margin: 0 auto;
+.link-one {
+  padding-right: .75em;
 }

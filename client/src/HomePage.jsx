@@ -17,14 +17,14 @@ export function HomePage() {
             never forget the fantastic day. 
           </h4>
           <h5 className="grey-text text-darken-4 lighten-4 center">
-            From Art, Fitness, Travel, and more, Adventure Awaits' got you covered.
+            From Art, Fitness, Travel, and more, Adventure Awaits has got you covered.
           </h5>
         </div>
       </div>
-      <span>
-        <Link className="indigo-text text-darken-2 homepage-link left" to="/profile"> Your Profile </Link>  <br /> 
-        <Link className="indigo-text text-darken-2 homepage-link left" to="/listitem/new"> Create A New Adventure </Link>
-      </span>
+      <div className="homepage-link">
+        <Link className="link-one indigo-text text-darken-2" to="/profile"> Your Profile </Link> 
+        <Link className="indigo-text text-darken-2" to="/listitem/new"> Create A New Adventure </Link>
+      </div>
     </div>
   );
 }
