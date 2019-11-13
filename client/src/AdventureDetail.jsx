@@ -59,7 +59,7 @@ class AdventureDetail extends React.Component {
     if (this.state.details) {
       // If there are details on the page, continue from here...
       if (this.state.details.photo.match(re)) {
-        // If there are deatils on the page and if the photo string starts with 'https', display details listed below 
+        // If there are details on the page and if the photo string starts with 'https', display details listed below 
         content = (
           <div className="App">
             <h1>{this.state.details.name}</h1>

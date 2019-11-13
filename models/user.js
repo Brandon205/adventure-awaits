@@ -5,6 +5,7 @@ const listitemSchema = new mongoose.Schema({
   name: String,
   description: String,
   photo: String,
+  checked: Boolean,
   categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category"}]
 });
 
