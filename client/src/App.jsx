@@ -13,7 +13,7 @@ import Bucketlist from './Bucketlist';
 import NewListitem from './NewListitem';
 import AdventureDetail from './AdventureDetail';
 import AdventureEdit from './AdventureEdit';
-import './App.css';
+import './css/App.css';
 
 class App extends React.Component {
   state = { 
@@ -67,7 +67,7 @@ class App extends React.Component {
         <nav>
           <div className="nav-wrapper">
             <ul>
-              <li><a onClick={this.logout}>Logout</a></li>
+              <li><a href="#" onClick={this.logout}>Logout</a></li>
             </ul>
             <Link className="brand-logo center" to="/">Adventure Awaits</Link>
             <ul id="nav-mobile" className="right hide-on-med-and-down">

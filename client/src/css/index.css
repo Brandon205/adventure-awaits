@@ -1,6 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: url('./img/BackgroundImg.jpg');
+  background-image: url('../img/BackgroundImg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0;
@@ -14,4 +14,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+white-text {
+  font-size: 2opx;
 }
