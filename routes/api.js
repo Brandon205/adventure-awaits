@@ -60,6 +60,7 @@ router.post('/categories', (req, res) => {
       name: req.body.name,
       description: req.body.description,
       photo: req.body.photo,
+      checked: false,
       categories: req.body.catId
     });
     user.save( (err, newUser) => {
@@ -77,12 +78,32 @@ router.put('/listitem/:id', (req, res) => {
       name: req.body.name,
       description: req.body.description,
       photo: req.body.photo,
+      checked: false,
       categories: [req.body.catId]
     });
     user.save( (err, newInfo) => {
       res.json(newInfo.listitems.id(req.params.id));
     });
   }).catch(err => console.log(err))
+});
+
+// PUT /profile/:id Will save the whether the user has checked/unchecked the accomplishment and send the updated data to the front
+router.put('/profile/:id', (req, res) => {
+  User.findById(req.user._id, (err, user) => {
+    let copy = user.listitems.id(req.params.id)
+    user.listitems.id(req.params.id).remove();
+    user.listitems.push({
+      _id: copy._id,
+      name: copy.name,
+      description: copy.description,
+      photo: copy.photo,
+      checked: !copy.checked,
+      categories: [copy.categories[0]]
+    });
+    user.save( (err, newInfo) => {
+      res.json(newInfo.listitems.id(req.params.id));
+    })
+  });
 });
 
 module.exports = router;
