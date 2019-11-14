@@ -13,18 +13,12 @@ router.get('/categories', (req, res) => {
 });
 
 // GET /api/usercategories Shows all of the categories for a user in which a listitem exists (for /profile page)
-/* B/c listitems is any array, we need to iterate through it to get to the category name that will 
-end up showing on the client side. We add to the array 'arr' when we find a category name that is 
-not already included. If a user has multiple saved line items, two within 'travel' and one within 'food,
-the result should be 'travel' and 'food'.
-*/
 router.get('/usercategories', (req, res) => {
   User.findById(req.user._id).populate('listitems.categories').exec((err, user) =>{
     if (err) return console.log(err);
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
       if (user.listitems[i].categories.length > 0 && !arr.includes(user.listitems[i].categories[0].name)) {
-        console.log(user.listitems[i].categories[0].name);
         arr.push(user.listitems[i].categories[0].name)
       }
     }
@@ -37,7 +31,7 @@ router.get('/listitems/:cName', (req, res) => {
   User.findById(req.user._id).populate('listitems.categories').exec((err, user) =>{
     let arr = [];
     for(let i = 0; i < user.listitems.length; i++){
-      if (user.listitems[i].categories[0].name === req.params.cName) {
+      if (user.listitems[i].categories.length > 0 && user.listitems[i].categories[0].name === req.params.cName) {
         arr.push(user.listitems[i]);
       }
     }
@@ -48,7 +42,7 @@ router.get('/listitems/:cName', (req, res) => {
 // GET /api/listitems/:id Will show a list of the details linked to a specific listitem
 router.get('/listitem/:id', (req, res) => { 
   User.findById(req.user._id, (err, user) => { // Be sure to pass in a name as the id or change to findById
-    res.send(user.listitems.id(req.params.id));
+    res.json(user.listitems.id(req.params.id));
     }).catch(err => console.log(err));
   });
 
@@ -61,11 +55,12 @@ router.post('/newcategory', (req, res) => {
 
 // POST /api/categories Will "add" a new category & list item referencing that category
 router.post('/categories', (req, res) => { 
-  User.findById(req.body.uId, (err, user) => {
+  User.findById(req.user._id, (err, user) => {
     user.listitems.push({
       name: req.body.name,
       description: req.body.description,
       photo: req.body.photo,
+      checked: false,
       categories: req.body.catId
     });
     user.save( (err, newUser) => {
@@ -83,10 +78,32 @@ router.put('/listitem/:id', (req, res) => {
       name: req.body.name,
       description: req.body.description,
       photo: req.body.photo,
-      completed: false
+      checked: false,
+      categories: [req.body.catId]
     });
-    res.json(user.listitems.id(req.params.id));
+    user.save( (err, newInfo) => {
+      res.json(newInfo.listitems.id(req.params.id));
+    });
   }).catch(err => console.log(err))
+});
+
+// PUT /profile/:id Will save the whether the user has checked/unchecked the accomplishment and send the updated data to the front
+router.put('/profile/:id', (req, res) => {
+  User.findById(req.user._id, (err, user) => {
+    let copy = user.listitems.id(req.params.id)
+    user.listitems.id(req.params.id).remove();
+    user.listitems.push({
+      _id: copy._id,
+      name: copy.name,
+      description: copy.description,
+      photo: copy.photo,
+      checked: !copy.checked,
+      categories: [copy.categories[0]]
+    });
+    user.save( (err, newInfo) => {
+      res.json(newInfo.listitems.id(req.params.id));
+    })
+  });
 });
 
 module.exports = router;

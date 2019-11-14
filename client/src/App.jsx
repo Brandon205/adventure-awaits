@@ -7,13 +7,13 @@ import {
   Route, 
   Link 
 } from 'react-router-dom';
-import {HomePage} from './HomePage';
+import HomePage from './HomePage';
 import Profile from './Profile';
 import Bucketlist from './Bucketlist';
 import NewListitem from './NewListitem';
 import AdventureDetail from './AdventureDetail';
 import AdventureEdit from './AdventureEdit';
-import './App.css';
+import './css/App.css';
 
 class App extends React.Component {
   state = { 
@@ -40,7 +40,7 @@ class App extends React.Component {
         } else {
           // if verified store it back in LS and state
           localStorage.setItem('mernToken', res.data.token);
-          this.setState({ token: res.data.token });
+          this.setState({ token: res.data.token, user: res.data.user });
         }
       })
     }
@@ -54,7 +54,8 @@ class App extends React.Component {
     this.setState({ token, user });
   }
 
-  logout = () => {
+  logout = (e) => {
+    e.preventDefault();
     localStorage.removeItem('mernToken');
     this.setState({ token: '', user: null });
   }
@@ -64,30 +65,30 @@ class App extends React.Component {
     if (this.state.user) {
       navContents = (
         <nav>
-          <div className="left">
-            <button onClick={this.logout}>Logout</button>
-          </div>
-          <div className="middle">
-            <Link to="/homepage">Adventure Awaits</Link>
-          </div>
-          <div className="right">
-            <Link to='/profile'>Profile</Link>{' | '}
-            <Link to='/profile/new'>New</Link>
+          <div className="nav-wrapper">
+            <ul>
+              <li><a href="#" onClick={this.logout}>Logout</a></li>
+            </ul>
+            <Link className="brand-logo center" to="/">Adventure Awaits</Link>
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li><Link to='/profile'>Profile</Link></li>
+              <li><Link to='/listitem/new'>New</Link></li>
+            </ul>
           </div>
         </nav>
       );
     } else {
       navContents = (
         <nav>
-          <div className="left">
-            <Link to='/signup'>Signup</Link>{' | '}
-            <Link to='/login'>Login</Link>
-          </div>
-          <div className="middle">
-            <Link to="/homepage">Adventure Awaits</Link>
-          </div>
-          <div className="right">
-            <p>Welcome!</p>
+          <div className="nav-wrapper">
+            <ul className="left hide-on-med-and-down">
+              <li><Link to='/signup'>Signup</Link></li>
+              <li><Link to='/login'>Login</Link></li>
+            </ul>
+            <Link className="brand-logo center" to="/">Adventure Awaits</Link>
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li>Welcome!</li>
+            </ul>
           </div>
         </nav>
       );
@@ -98,14 +99,14 @@ class App extends React.Component {
         <header>
           {navContents}
         </header>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" render={ () => <HomePage token={this.state.token} /> } />
         <Route exact path="/signup" render={ () => <Signup liftToken={this.liftToken} /> } />
         <Route exact path="/login" render={ () => <Login liftToken={this.liftToken} /> } />
         <Route exact path="/profile" render={ () => <Profile token={this.state.token} /> } />
         <Route exact path="/listitem/new" render={ () => <NewListitem token={this.state.token} /> } />
-        <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} /> } />
-        <Route exact path="/profile/:id/adventure" render={ (props) => <AdventureDetail {...props} /> } />
-        <Route exact path="/profile/:id/edit" render={ (props) => <AdventureEdit {...props} /> } />
+        <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} token={this.state.token} /> } />
+        <Route exact path="/profile/:id/adventure/:cName" render={ (props) => <AdventureDetail {...props} token={this.state.token} /> } />
+        <Route exact path="/profile/:id/edit/:cName" render={ (props) => <AdventureEdit {...props} token={this.state.token} /> } />
       </Router>
     );
   }

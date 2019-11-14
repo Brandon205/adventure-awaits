@@ -1,0 +1,35 @@
+
+.App {
+  background-image: url('../img/BackgroundImg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.homepage-content {
+  text-align: right;
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 70vh;
+  max-width: 55%;
+}
+
+.AppName {
+  font-family: 'Patua One', cursive;
+  font-size: 6em;
+
+  /* padding: 10vh; */
+}
+
+.homepage-link {
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+  margin-left: 35vw;
+  padding: 1vw;
+}
+
+.link-one {
+  padding-right: .75em;
+}

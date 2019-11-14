@@ -1,76 +1,96 @@
 import React from 'react';
-import axios from 'axios';
-
+import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import {Button,  Icon, Select} from 'react-materialize';
+import './css/NewListItem.css';
 class NewListitem extends React.Component {
-  state = { 
+state = { 
     name: '',
     description: '',
     photo: '',
     categories: [],
-    selectedCategory: ''
-  }
-  componentDidMount = () => {
-    console.log(this.props.token)
+    selectedCategory: '',
+    redirect: ''
+}
+componentDidMount = () => {
     let config = {
-      headers: {
+        headers: {
         Authorization: `Bearer ${this.props.token}`
-      }
-    }
-    axios.get('/api/categories', config)
+        }
+}
+Axios.get('/api/categories', config)
     .then(response => {
-      this.setState({
+
+        this.setState({
         categories: response.data
-      })
+        })
     })
-  }
+}
 
-  handleChange = (e) => {
+handleChange = (e) => {
     this.setState({ 
-      [e.target.name]: e.target.value
+        [e.target.name]: e.target.value
     });
-  }
-  handleToggleChange = (e) => {
+}
+handleToggleChange = (e) => {
     this.setState({
-      selectedCategory: e.target.value,
+        selectedCategory: e.target.value,
     })
-  }
+}
 
-  handleSubmit = (e) => {
+handleSubmit = (e) => {
     e.preventDefault()
-    
-    axios.post('/api/categories', {
-      name: this.state.name,
-      description: this.state.description,
-      photo: this.state.photo,
-      catId: this.state.selectedCategory
-    }).then( response => {
-    this.setState({
-        categories: this.state.categories,
-        description: '',
-        photo: '',
-        name: '',
-      })
+    let config = {
+        headers: {
+            Authorization: `Bearer ${this.props.token}`
+        }
+    }
+    Axios.post('/api/categories',{
+        name: this.state.name,
+        description: this.state.description,
+        photo: this.state.photo,
+        catId: this.state.selectedCategory 
+    }, config).then( response => {
+        this.setState({
+            categories: this.state.categories,
+            description: this.state.description,
+            photo: this.state.photo,
+            name: this.state.name,
+            selectedCategory: this.state.selectedCategory,
+            redirect: <Redirect to={`/profile`} />
+        })
     })
-  }
-  render() { 
-    
-    const mappedCategories = this.state.categories.map( (category,id) => <option key={id} value={category._id}>{category.name}</option>)
+}
+
+render() { 
+
+    const mappedCategories = this.state.categories.map( (category,id) =>  <option key={id} value={category._id}>{category.name}</option>)
     return ( 
-      <>
-      <h1>This is the NewListitem component</h1>
-      <form onSubmit={this.handleSubmit}>
-      <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your bucketlist"/>
-        <input type="hidden" onChange={this.handleChange} name="description" value=""/>
-        <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
-        
-        <select name="category" onClick={this.handleToggleChange}>
+        <div className="App">
+        <h1 className="input">Create Your Adventure Below </h1>
+        <div className="form-id">
+        <form onSubmit={this.handleSubmit}>
+        <input className="input" type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your Bucketlist"/> <br />
+        <input className="input" type="hidden" onChange={this.handleChange} name="description" value=""/>
+        <input className="input"type="hidden" onChange={this.handleChange} name="photo" value=""/>
+
+        <Select name="category" onChange={this.handleToggleChange}>
+        <option >Please Select Category:</option>
         {mappedCategories}
-        </select> <br />
-        <input type="submit" value="Submit"/>
-      </form> 
-      </>
+        </Select> <br />
+        <Button className="input" type="submit" waves="light">
+            Submit
+            <Icon right>
+            send
+            </Icon>
+        </Button>
+        </form> 
+
+        </div>
+        {this.state.redirect}
+        </div>
     );
-  }
+    }
 }
 
 export default NewListitem;
