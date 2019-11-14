@@ -1,6 +1,8 @@
 import React from 'react';
 import Axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import {Button,  Icon} from 'react-materialize';
+import './css/AdventureEdit.css';
 class AdventureEdit extends React.Component {
   state = { 
     name: '',
@@ -59,16 +61,27 @@ class AdventureEdit extends React.Component {
 }
   render() { 
     return ( 
-      <>
-      <h3>Edit Your Adventure</h3>
-      <form onSubmit={this.handleSubmit}>
-      Adventure: <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
-      Description of the Completed Adventure: <input type="text" onChange={this.handleChange} name="description" value={this.state.description} placeholder="How did it go?"/><br />
-      <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
-      <input type="submit" value="Submit"/>
-      </form> 
-      {this.state.redirect}
-      </>
+
+      <div className="adventure-background">
+        <div className="title">
+          <h3 className="input">Edit Your Adventure</h3>
+          <form className="form-id" onSubmit={this.handleSubmit}>
+          <p className="input" >Adventure: </p><input className="input" type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
+          <p className="input">Description of the Completed Adventure:</p> <input className="input" type="text" onChange={this.handleChange} name="description" value={this.state.description} placeholder="How did it go?"/><br />
+          <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
+          <Button className="btn-input" type="submit" waves="light">
+              Submit
+              <Icon right>
+              send
+              </Icon>
+            </Button>
+          </form> 
+          {this.state.redirect}
+        </div>
+
+      </div>
+
+      
     );
   }
 }

@@ -44,11 +44,13 @@ class Bucketlist extends React.Component {
     }
 
     return ( 
-      <div className="list-items">
-        <div className="category-name">Your {this.props.match.params.cName} Adventures</div>
-        <ul>
-          {mappedListitems}
-        </ul>
+      <div className="category-background">
+          <div className="list-items">
+            <div className="category-name">Your {this.props.match.params.cName} Adventures</div>
+            <ul>
+              {mappedListitems}
+            </ul>
+          </div>
       </div>
     );
   }
