@@ -29,8 +29,8 @@ class Profile extends React.Component {
     }
 
     return ( 
-      <div className="App">
-        <div className="content2">
+      <div className="category-background">
+        <div className="no-bkg-content">
             <Col m={6} s={12}>
               <Collection header="Your Categories" id="no-margin">
                 {mappedCategories}

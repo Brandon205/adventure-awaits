@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import './css/Login.css'
 
 class AdventureDetail extends React.Component {
   state = { 
@@ -61,7 +62,7 @@ class AdventureDetail extends React.Component {
       if (this.state.details.photo.match(re)) {
         // If there are details on the page and if the photo string starts with 'https', display details listed below 
         content = (
-          <div className="App">
+          <div className="category-background">
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
             <img src={this.state.details.photo} alt="Event" /> <br/>
@@ -71,7 +72,7 @@ class AdventureDetail extends React.Component {
       } else if (this.state.displayImage){
         // To make uploaded image display immediately after user uploads it 
         content = (
-        <div className="App">
+        <div className="category-background">
           <h1>{this.state.details.name}</h1>
           <p>{this.state.details.description}</p>
           <img src={this.state.displayImage} alt="Event"/> <br/>
@@ -81,7 +82,7 @@ class AdventureDetail extends React.Component {
       } else {
         // If there are no displayed images and no photo in the database, will display the form 
         content = (
-          <div className="App">
+          <div className="category-background">
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
             <input type="file" onChange={this.handleFileChange} />
@@ -93,7 +94,7 @@ class AdventureDetail extends React.Component {
     } else {
       // Only when component did mount hasn't loaded
       content = (
-        <p>Loading...</p>
+        <p className="category-background">Loading...</p>
       )
     }
 
