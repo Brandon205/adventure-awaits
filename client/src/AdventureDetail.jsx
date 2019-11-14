@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-materialize';
 import './css/Login.css'
 
 class AdventureDetail extends React.Component {
@@ -66,7 +67,9 @@ class AdventureDetail extends React.Component {
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
             <img src={this.state.details.photo} alt="Event" /> <br/>
-            <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
+            <Button waves="light">
+              <Link className="white-text" to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link><br/>
+            </Button>
           </div>
         )
       } else if (this.state.displayImage){
@@ -76,7 +79,9 @@ class AdventureDetail extends React.Component {
           <h1>{this.state.details.name}</h1>
           <p>{this.state.details.description}</p>
           <img src={this.state.displayImage} alt="Event"/> <br/>
-          <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
+          <Button waves="light">
+              <Link className="white-text" to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link><br/>
+            </Button>
         </div>
         )
       } else {
@@ -86,8 +91,10 @@ class AdventureDetail extends React.Component {
             <h1>{this.state.details.name}</h1>
             <p>{this.state.details.description}</p>
             <input type="file" onChange={this.handleFileChange} />
-            <button onClick={this.handleImageSubmit}>Add Photo</button> <br />
-            <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
+            <Button onClick={this.handleImageSubmit}>Add Photo</Button> <br />
+            <Button waves="light">
+              <Link className="white-text" to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link><br/>
+            </Button>
           </div>
         )
       }
