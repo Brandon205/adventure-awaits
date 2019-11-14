@@ -22,7 +22,6 @@ class Bucketlist extends React.Component {
 
   handleChecked = (e, id) => {
     e.preventDefault();
-    console.log('hello world')
     let config = {
       headers: {
         Authorization: `Bearer ${this.props.token}`

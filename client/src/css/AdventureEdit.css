@@ -11,7 +11,7 @@
 .form-id{
     margin: 0 auto;
     margin-top: 0;
-    /* max-width: 300px; */
+    max-width: 300px;
     font-family: 'Patua One', cursive;
 }
 .input {
@@ -19,19 +19,28 @@
     color: black;
     margin-top: 0;
 }
+.input-title {
+    font-family: 'Patua One', cursive;
+    color: black;
+    margin-top: 0;
+    margin-left: 120px;
+}
 .btn-input {
     font-family: 'Patua One', cursive;
     color: white;
-    margin-top: 70px;
+    margin-top: 40px;
+    margin-left: 50px;
 }
 .pTag {
     color: black;
+    margin-left: 120px;
 }
 .title {
-    text-align: center;
+    width: 30vw;
     margin: 0 auto;
-    background-color: white;
-    width: 500px;
-    height: 300px;
+    background-color: #f5f5f5d9;
+    border-radius: 15px;
+    padding: 15px;
+
 }
 
