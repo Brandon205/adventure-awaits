@@ -36,11 +36,11 @@ Be deployed online
   - Node.js    
 
 ## User Stories 
--As a user I want to...  
-  -Have an account and signup, login, logout  
-  -Create a new adventure     
-    -Edit the adventure, add details and photos about the adventure  
-    -Check that the adventure has been completed  
+- As a user I want to...  
+  - Have an account and signup, login, logout  
+  - Create a new adventure     
+    - Edit the adventure, add details and photos about the adventure  
+    - Check that the adventure has been completed  
 
 ## Development Sprints and Process 
   ### Sprint 1 
