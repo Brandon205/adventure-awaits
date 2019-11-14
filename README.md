@@ -45,7 +45,7 @@ Be deployed online
 ## Development Sprints and Process 
   ### Sprint 1 
   Our first sprint all about planning out app in detail. We spend the day thinking about the user story, planning the models and how they would relate to one another, wireframing, and our backend routes. We spent some time discussing the distribution of responsibities and Brandon volunteered to be our Git Master for the project. 
-  ![UserStoryImage]:/client/src/img/UserStory.jpeg
+  ![UserStoryImage](/client/src/img/UserStory.jpeg)
 
   
   ### Sprint 2 
