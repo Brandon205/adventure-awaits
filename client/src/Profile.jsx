@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
+import './css/index.css'
 
 class Profile extends React.Component {
   state = {
