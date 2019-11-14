@@ -1,0 +1,22 @@
+.list-items{
+    margin: 0 auto;
+    max-width: 300px;
+    font-family: 'Patua One', cursive;
+    margin-top: 60px;
+}
+.mapped-items {
+    color: white;
+    font-size: 35px;
+}
+.category-name {
+    color: white;
+    font-size: 35px;
+    width: 100vw;
+}
+.edit-items {
+    color: white;
+}
+
+.checkbox{
+    background-color: black;
+}

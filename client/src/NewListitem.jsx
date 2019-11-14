@@ -1,7 +1,8 @@
 import React from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
-
+import {Button,  Icon, Select} from 'react-materialize';
+import './css/NewListItem.css';
 class NewListitem extends React.Component {
 state = { 
     name: '',
@@ -63,22 +64,31 @@ handleSubmit = (e) => {
 
 render() { 
 
-    const mappedCategories = this.state.categories.map( (category,id) => <option key={id} value={category._id}>{category.name}</option>)
+    const mappedCategories = this.state.categories.map( (category,id) =>  <option key={id} value={category._id}>{category.name}</option>)
     return ( 
-        <>
-        <h1>Create Your Adventure Below </h1>
+        <div className="App">
+        <h1 className="input">Create Your Adventure Below </h1>
+        <div className="form-id">
         <form onSubmit={this.handleSubmit}>
-        Add Item To Your List <input type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your bucketlist"/> <br />
-        <input type="hidden" onChange={this.handleChange} name="description" value=""/>
-        <input type="hidden" onChange={this.handleChange} name="photo" value=""/>
-        <select name="category" onChange={this.handleToggleChange}>
-        <option>Please Select Category:</option>
+        <input className="input" type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your Bucketlist"/> <br />
+        <input className="input" type="hidden" onChange={this.handleChange} name="description" value=""/>
+        <input className="input"type="hidden" onChange={this.handleChange} name="photo" value=""/>
+
+        <Select name="category" onChange={this.handleToggleChange}>
+        <option >Please Select Category:</option>
         {mappedCategories}
-        </select> <br />
-        <input type="submit" value="Submit"/>
+        </Select> <br />
+        <Button className="input" type="submit" waves="light">
+            Submit
+            <Icon right>
+            send
+            </Icon>
+        </Button>
         </form> 
+
+        </div>
         {this.state.redirect}
-        </>
+        </div>
     );
     }
 }
