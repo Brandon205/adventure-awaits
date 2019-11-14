@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import {Button,  Icon, Select} from 'react-materialize';
+import {Button,  Icon, Select, TextInput} from 'react-materialize';
 import './css/NewListItem.css';
 class NewListitem extends React.Component {
 state = { 
@@ -66,26 +66,27 @@ render() {
 
     const mappedCategories = this.state.categories.map( (category,id) =>  <option key={id} value={category._id}>{category.name}</option>)
     return ( 
-        <div className="App">
-        <h1 className="input">Create Your Adventure Below </h1>
-        <div className="form-id">
-        <form onSubmit={this.handleSubmit}>
-        <input className="input" type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder="Add to your Bucketlist"/> <br />
-        <input className="input" type="hidden" onChange={this.handleChange} name="description" value=""/>
-        <input className="input"type="hidden" onChange={this.handleChange} name="photo" value=""/>
+      <div className="background">
+        <div className="newlist-item">
+          <h1 className="input-newlist">Create Your Adventure Below </h1>
+          <div className="form-id">
+            <form onSubmit={this.handleSubmit}>
+            <TextInput label="Add to your Bucketlist" className="input-newlist" type="text" onChange={this.handleChange} name="name" value={this.state.name}/>
+            <input className="input-newlist" type="hidden" onChange={this.handleChange} name="description" value=""/>
+            <input className="input-newlist"type="hidden" onChange={this.handleChange} name="photo" value=""/>
 
-        <Select name="category" onChange={this.handleToggleChange}>
-        <option >Please Select Category:</option>
-        {mappedCategories}
-        </Select> <br />
-        <Button className="input" type="submit" waves="light">
-            Submit
-            <Icon right>
-            send
-            </Icon>
-        </Button>
-        </form> 
-
+            <Select name="category" onChange={this.handleToggleChange}>
+            <option >Please Select Category:</option>
+            {mappedCategories}
+            </Select> <br />
+            <Button className="input" type="submit" waves="light">
+                Submit
+                <Icon right>
+                send
+                </Icon>
+            </Button>
+            </form> 
+          </div>
         </div>
         {this.state.redirect}
         </div>

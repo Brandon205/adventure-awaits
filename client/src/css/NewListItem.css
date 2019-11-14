@@ -1,12 +1,30 @@
 .form-id{
-    margin: 0 auto;
+    /* margin: 0 auto; */
     max-width: 300px;
     font-family: 'Patua One', cursive;
 }
-.input {
+.input-newlist {
     font-family: 'Patua One', cursive;
-    color: white;
+    color: black;
+    margin-top: 0;
 }
 .pTag {
     color: white;
+}
+.background {
+    background-image: url('../img/mainPhoto.jpeg');
+    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    background-position: center center;
+    text-align:center;
+}
+.newlist-item {
+    /* text-align: center; */
+    margin: 0 auto;
+    background-color: white;
+    width: 500px;
+    height: 300px;
 }

@@ -1,0 +1,37 @@
+.adventure-background {
+    background-image: url('../img/mainPhoto.jpeg');
+    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0;
+}
+.form-id{
+    margin: 0 auto;
+    margin-top: 0;
+    /* max-width: 300px; */
+    font-family: 'Patua One', cursive;
+}
+.input {
+    font-family: 'Patua One', cursive;
+    color: black;
+    margin-top: 0;
+}
+.btn-input {
+    font-family: 'Patua One', cursive;
+    color: white;
+    margin-top: 70px;
+}
+.pTag {
+    color: black;
+}
+.title {
+    text-align: center;
+    margin: 0 auto;
+    background-color: white;
+    width: 500px;
+    height: 300px;
+}
+
