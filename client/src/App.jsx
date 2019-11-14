@@ -7,7 +7,7 @@ import {
   Route, 
   Link 
 } from 'react-router-dom';
-import {HomePage} from './HomePage';
+import HomePage from './HomePage';
 import Profile from './Profile';
 import Bucketlist from './Bucketlist';
 import NewListitem from './NewListitem';
@@ -99,7 +99,7 @@ class App extends React.Component {
         <header>
           {navContents}
         </header>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" render={ () => <HomePage token={this.state.token} /> } />
         <Route exact path="/signup" render={ () => <Signup liftToken={this.liftToken} /> } />
         <Route exact path="/login" render={ () => <Login liftToken={this.liftToken} /> } />
         <Route exact path="/profile" render={ () => <Profile token={this.state.token} /> } />
