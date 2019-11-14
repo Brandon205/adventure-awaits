@@ -3,6 +3,8 @@
   background-image: url('../img/BackgroundImg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
 }
 .homepage-content {
   text-align: right;

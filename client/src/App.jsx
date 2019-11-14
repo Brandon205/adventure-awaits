@@ -13,6 +13,7 @@ import Bucketlist from './Bucketlist';
 import NewListitem from './NewListitem';
 import AdventureDetail from './AdventureDetail';
 import AdventureEdit from './AdventureEdit';
+import { Navbar, NavItem } from 'react-materialize';
 import './css/App.css';
 
 class App extends React.Component {
@@ -24,7 +25,7 @@ class App extends React.Component {
   }
 
   checkForLocalToken = () => {
-    // Look in LS for localtoken
+    //Look in LS for localtoken
     let token = localStorage.getItem('mernToken');
     if (!token || token === 'undefined') {
       // if no taken, remove all evidence of mernToken from LS and state
@@ -64,33 +65,24 @@ class App extends React.Component {
     let navContents;
     if (this.state.user) {
       navContents = (
-        <nav>
-          <div className="nav-wrapper">
-            <ul>
-              <li><a href="#" onClick={this.logout}>Logout</a></li>
-            </ul>
-            <Link className="brand-logo center" to="/">Adventure Awaits</Link>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li><Link to='/profile'>Profile</Link></li>
-              <li><Link to='/listitem/new'>New</Link></li>
-            </ul>
+        <div className="nav-wrapper">
+                <Navbar>
+                  <Link className="brand-logo center" to="/">Adventure Awaits</Link>
+                  <Link classname="logout left" to="/logout" onClick={this.logout}> Logout </Link>
+                  <NavItem className="right" href='/profile'>Profile</NavItem>
+                  <NavItem className="left" href="/listitem/new"> Create New Adventure</NavItem>
+                </Navbar>
           </div>
-        </nav>
       );
     } else {
       navContents = (
-        <nav>
           <div className="nav-wrapper">
-            <ul className="left hide-on-med-and-down">
-              <li><Link to='/signup'>Signup</Link></li>
-              <li><Link to='/login'>Login</Link></li>
-            </ul>
-            <Link className="brand-logo center" to="/">Adventure Awaits</Link>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li>Welcome!</li>
-            </ul>
+            <Navbar>
+              <Link className="brand-logo center" to="/">Adventure Awaits</Link>
+              <Link to='/signup'>Signup</Link>
+              <Link to='/login'>Login</Link>
+            </Navbar>
           </div>
-        </nav>
       );
     }
 
