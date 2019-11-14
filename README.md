@@ -26,25 +26,27 @@ Be deployed online
 * View in browser 
 
 ## Technologies Used 
-  -MongoDB/Mongoose  
-  -Experess.js  
-  -React    
-    -Key Modules:  
-      -Axios
-      -React-router-dom
-      -React-Materialize
-  -Node.js  
+  -MongoDB/Mongoose    
+  -Experess.js    
+  -React      
+    -Key Modules:    
+      -Axios  
+      -React-router-dom  
+      -React-Materialize  
+  -Node.js    
 
 ## User Stories 
 -As a user I want to...  
-  -Have an account and signup, login, logout
-  -Create a new adventure   
-    -Edit the adventure, add details and photos about the adventure
-    -Check that the adventure has been completed
+  -Have an account and signup, login, logout  
+  -Create a new adventure     
+    -Edit the adventure, add details and photos about the adventure  
+    -Check that the adventure has been completed  
 
 ## Development Sprints and Process 
   ### Sprint 1 
   Our first sprint all about planning out app in detail. We spend the day thinking about the user story, planning the models and how they would relate to one another, wireframing, and our backend routes. We spent some time discussing the distribution of responsibities and Brandon volunteered to be our Git Master for the project. 
+  ![UserStoryImage][/client/src/img/UserStory.jpeg]
+
   
   ### Sprint 2 
   We spent an entire work day completing our back end routes and models. Originally we did not include Mongoose's .id that is used with embedded elements in order to utilize a 'findById' so our routes all included many for loops, but we were able to simplify them after learning about the tool above. We verified our routes work via Postman and ended the day on a high note. 
@@ -80,7 +82,7 @@ Be deployed online
 
 
 ## Things to Note and Changes for the Future:
-  Some goals for the future:
+  Some goals for the future:  
     1. Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests  
     2. Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!)   
     3. Reactive styling to accomodate mobile and tablet users   
