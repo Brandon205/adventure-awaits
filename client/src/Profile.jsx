@@ -1,8 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
-
-import { Button, Row, Col, Collection, CollectionItem } from 'react-materialize';
+import { Button, Col, Collection, CollectionItem } from 'react-materialize';
 import './css/Login.css'
 
 class Profile extends React.Component {
@@ -30,17 +29,17 @@ class Profile extends React.Component {
     }
 
     return ( 
-      <div className="center-align">
-          <Row className="align-center">
+      <div className="App">
+        <div className="content2">
             <Col m={6} s={12}>
-              <Collection header="Your Categories">
+              <Collection header="Your Categories" id="no-margin">
                 {mappedCategories}
               </Collection>
             </Col>
-          </Row>
-        <Button waves="light" style={{marginRight: '5px'}}>
-          <Link className="white-text" to="/listitem/new"> Create A New Adventure! </Link> <br /> 
-        </Button>
+          <Button waves="light" style={{marginRight: '5px'}}>
+            <Link className="white-text" to="/listitem/new"> Create A New Adventure! </Link> <br /> 
+          </Button>
+        </div>
       </div>
     );
   }

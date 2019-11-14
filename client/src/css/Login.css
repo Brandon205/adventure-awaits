@@ -10,3 +10,9 @@
   width: 40vw;
   margin: 0 auto;
 }
+
+#no-margin {
+  margin-top: 0;
+  padding: 20px;
+  border: none;
+}
