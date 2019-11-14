@@ -6,9 +6,13 @@
   width: 100vw;
   height: 100vh;
 }
+
 .AppName {
   font-family: 'Patua One', cursive;
   font-size: 12vh;
+  margin-top: 0;
+  padding: 20px;
+  border: none;
 }
 
 .homepage-content {
