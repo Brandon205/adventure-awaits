@@ -1,6 +1,8 @@
 import React from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import Map from './Map';
+import './css/Login.css';
 
 class AdventureDetail extends React.Component {
   state = { 
@@ -98,8 +100,11 @@ class AdventureDetail extends React.Component {
     }
 
     return (
-      <div className="App">
+      <div className="">
         {content}
+        <div className="map">
+        <Map />
+        </div>
       </div>
     );
   }

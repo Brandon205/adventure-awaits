@@ -38,7 +38,7 @@ class Signup extends React.Component {
       output = this.state.redirect
     } else {
       output = (
-        <div className="content">
+        <div className="content-background">
           <TextInput label="Name" type="text" name="name" onChange={this.handleChange} value={this.state.name} /><br/>
           <TextInput label="Email" type="text" name="email" onChange={this.handleChange} value={this.state.email} /><br/>
           <TextInput label="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password} /> <br />

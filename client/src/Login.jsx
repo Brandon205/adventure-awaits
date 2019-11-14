@@ -36,7 +36,7 @@ class Login extends React.Component {
       output = this.state.redirect;
     } else {
       output = (
-        <div className="content">
+        <div className="content-background">
           <TextInput label="Email" type="text" name="email" onChange={this.handleChange} value={this.state.email} /> <br />
           <TextInput label="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password} /><br />
           <Button type="submit" waves="light" onClick={this.handleSubmit}>Log In</Button>
