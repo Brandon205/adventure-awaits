@@ -66,23 +66,23 @@ class App extends React.Component {
     if (this.state.user) {
       navContents = (
         <div className="nav-wrapper">
-                <Navbar>
-                  <Link className="brand-logo center" to="/">Adventure Awaits</Link>
-                  <Link classname="logout left" to="/logout" onClick={this.logout}> Logout </Link>
-                  <NavItem className="right" href='/profile'>Profile</NavItem>
-                  <NavItem className="left" href="/listitem/new"> Create New Adventure</NavItem>
-                </Navbar>
-          </div>
+          <Navbar alignLinks="left">
+            <Link className="brand-logo center" to="/">Adventure Awaits</Link>
+            <Link classname="logout" to="/logout" onClick={this.logout}> Logout </Link>
+            <Link  href='/profile'>Profile</Link>
+            <Link  href="/listitem/new"> Create New Adventure</Link>
+          </Navbar>
+        </div>
       );
     } else {
       navContents = (
-          <div className="nav-wrapper">
-            <Navbar>
-              <Link className="brand-logo center" to="/">Adventure Awaits</Link>
-              <Link to='/signup'>Signup</Link>
-              <Link to='/login'>Login</Link>
-            </Navbar>
-          </div>
+        <div className="nav-wrapper">
+          <Navbar>
+            <Link className="brand-logo center" to="/">Adventure Awaits</Link>
+            <Link to='/signup'>Signup</Link>
+            <Link to='/login'>Login</Link>
+          </Navbar>
+        </div>
       );
     }
 

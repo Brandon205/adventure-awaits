@@ -6,21 +6,18 @@
   width: 100vw;
   height: 100vh;
 }
+.AppName {
+  font-family: 'Patua One', cursive;
+  font-size: 12vh;
+}
+
 .homepage-content {
   text-align: right;
   display: flex;
-  /* flex-direction: row; */
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 70vh;
   max-width: 55%;
-}
-
-.AppName {
-  font-family: 'Patua One', cursive;
-  font-size: 6em;
-
-  /* padding: 10vh; */
 }
 
 .homepage-link {
