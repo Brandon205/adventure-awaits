@@ -26,14 +26,14 @@ Be deployed online
 * View in browser 
 
 ## Technologies Used 
-  -MongoDB/Mongoose    
-  -Experess.js    
-  -React      
-    -Key Modules:    
-      -Axios  
-      -React-router-dom  
-      -React-Materialize  
-  -Node.js    
+  - MongoDB/Mongoose    
+  - Experess.js    
+  - React      
+    - Key Modules:    
+      - Axios  
+      - React-router-dom  
+      - React-Materialize  
+  - Node.js    
 
 ## User Stories 
 -As a user I want to...  
@@ -83,10 +83,10 @@ Be deployed online
 
 ## Things to Note and Changes for the Future:
   Some goals for the future:  
-    1. Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests  
-    2. Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!)   
-    3. Reactive styling to accomodate mobile and tablet users   
-    4. Mapbox functionality so user may mark the location of their finished adventure, or perhaps show the locations of all finished adventures on their profile page   
+  - 1. Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests  
+  - 2. Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!)   
+  - 3. Reactive styling to accomodate mobile and tablet users   
+  - 4. Mapbox functionality so user may mark the location of their finished adventure, or perhaps show the locations of all finished adventures on their profile page   
 
     
 
