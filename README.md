@@ -32,6 +32,7 @@ Be deployed online
     -Key Modules:  
       -Axios
       -React-router-dom
+      -React-Materialize
   -Node.js  
 
 ## User Stories 
@@ -43,15 +44,15 @@ Be deployed online
 
 ## Development Sprints and Process 
   ### Sprint 1 
-  Our first sprint all about planning out app in detai. We spend the day thinking about the user story, planning the models and how they would relate to one another, wireframing, and our backend routes. We spent some time discussing the distribution of responsibities and Brandon volunteered to be our Git Master for the project. 
+  Our first sprint all about planning out app in detail. We spend the day thinking about the user story, planning the models and how they would relate to one another, wireframing, and our backend routes. We spent some time discussing the distribution of responsibities and Brandon volunteered to be our Git Master for the project. 
   
   ### Sprint 2 
   We spent an entire work day completing our back end routes and models. Originally we did not include Mongoose's .id that is used with embedded elements in order to utilize a 'findById' so our routes all included many for loops, but we were able to simplify them after learning about the tool above. We verified our routes work via Postman and ended the day on a high note. 
 
   ### Sprint 3 
-  Our next spring surrounded React and creating our front end components. We spent 2.5 days incorporating the back end to our front end, and editing our basic UX. 
+  Our next sprint surrounded React and creating our front end components. We spent the rest of our time incorporating the back end to our front end, integrating the React-Materialize module and styling our site. 
 
-  ## Sprint 4 
+
 
 ## Routes and Models 
 | CRUD | ROUTE | Function |
@@ -67,6 +68,7 @@ Be deployed online
 | POST | /categories | All categories for the user  |
 | GET | /listitems/:id | Shows all listitems for that category |
 | PUT | /listitems/:id | Updating listitems detail | 
+| PUT | /profile/:id | Updates whether the adventure is or is not check off by the user | 
 
 
 
@@ -79,8 +81,10 @@ Be deployed online
 
 ## Things to Note and Changes for the Future:
   Some goals for the future:
-    1. Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests
-    2. Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!) 
+    1. Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests  
+    2. Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amoutn of time away (ex: You wanted to 'Climb Matchu Pitchu' in 2 months!)   
+    3. Reactive styling to accomodate mobile and tablet users   
+    4. Mapbox functionality so user may mark the location of their finished adventure, or perhaps show the locations of all finished adventures on their profile page   
 
     
 

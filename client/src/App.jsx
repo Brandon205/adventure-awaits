@@ -13,7 +13,7 @@ import Bucketlist from './Bucketlist';
 import NewListitem from './NewListitem';
 import AdventureDetail from './AdventureDetail';
 import AdventureEdit from './AdventureEdit';
-import { Navbar, NavItem } from 'react-materialize';
+import { Navbar } from 'react-materialize';
 import './css/App.css';
 
 class App extends React.Component {
@@ -68,9 +68,9 @@ class App extends React.Component {
         <div className="nav-wrapper">
           <Navbar>
             <Link className="brand-logo center" to="/">Adventure Awaits</Link>
-            <Link to="/logout" onClick={this.logout}> Logout </Link>
-              <Link href='/profile'>Profile</Link>
-              <Link href="/listitem/new"> Create New Adventure</Link>
+            <Link to="/" onClick={this.logout}> Logout </Link>
+              <Link to="/profile">Profile</Link>
+              <Link to="/listitem/new"> Create New Adventure</Link>
           </Navbar>
         </div>
       );

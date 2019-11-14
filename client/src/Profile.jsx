@@ -29,14 +29,14 @@ class Profile extends React.Component {
     }
 
     return ( 
-      <div className="App">
-        <div className="content2">
+      <div className="category-background App">
+        <div className="no-bkg-content">
             <Col m={6} s={12}>
               <Collection header="Your Categories" id="no-margin">
                 {mappedCategories}
               </Collection>
             </Col>
-          <Button waves="light" style={{marginRight: '5px'}}>
+          <Button waves="light">
             <Link className="white-text" to="/listitem/new"> Create A New Adventure! </Link> <br /> 
           </Button>
         </div>
