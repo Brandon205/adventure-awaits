@@ -66,10 +66,10 @@ render() {
 
     const mappedCategories = this.state.categories.map( (category,id) =>  <option key={id} value={category._id}>{category.name}</option>)
     return ( 
-      <div className="background">
+    <div className="background">
         <div className="newlist-item">
-          <h1 className="input-newlist">Create Your Adventure Below </h1>
-          <div className="form-id">
+        <h1 className="input-newlist">Create Your Adventure Below </h1>
+        <div className="form-id">
             <form onSubmit={this.handleSubmit}>
             <TextInput label="Add to your Bucketlist" className="input-newlist" type="text" onChange={this.handleChange} name="name" value={this.state.name}/>
             <input className="input-newlist" type="hidden" onChange={this.handleChange} name="description" value=""/>
@@ -86,7 +86,7 @@ render() {
                 </Icon>
             </Button>
             </form> 
-          </div>
+        </div>
         </div>
         {this.state.redirect}
         </div>
