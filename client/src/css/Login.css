@@ -14,12 +14,8 @@
   margin: 0 auto;
 }
 
-mapContainer {
-  width: 90vw;
-  height: 90vh;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+#no-margin {
+  margin-top: 0;
+  padding: 20px;
+  border: none;
 }
