@@ -39,16 +39,16 @@ class Signup extends React.Component {
     } else {
       output = (
         <div className="content">
-          <TextInput inputClassName="white-text" label="Name" type="text" name="name" onChange={this.handleChange} value={this.state.name} /><br/>
-          <TextInput className="" label="Email" type="text" name="email" onChange={this.handleChange} value={this.state.email} /><br/>
-          <TextInput className="" label="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password} /> <br />
+          <TextInput label="Name" type="text" name="name" onChange={this.handleChange} value={this.state.name} /><br/>
+          <TextInput label="Email" type="text" name="email" onChange={this.handleChange} value={this.state.email} /><br/>
+          <TextInput label="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password} /> <br />
           <Button type="submit" waves="light" onClick={this.handleSubmit}>Sign Up</Button>
         </div>
       )
     }
     return ( 
       <div className="App">
-        <h2>Sign Up Here! </h2>
+        <h2>Sign Up</h2>
         {output}
       </div>
     );
