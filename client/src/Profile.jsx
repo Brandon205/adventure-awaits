@@ -1,7 +1,9 @@
 import React from 'react';
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
-import './css/index.css'
+
+import { Button, Row, Col, Collection, CollectionItem } from 'react-materialize';
+import './css/Login.css'
 
 class Profile extends React.Component {
   state = {
@@ -22,19 +24,23 @@ class Profile extends React.Component {
   render() { 
     var mappedCategories;
     if(this.state.categories.length) {
-      mappedCategories = this.state.categories.map((category, id) => <li key={id}> <Link to={`/profile/${category}`}>{category}</Link></li> )
+      mappedCategories = this.state.categories.map((category, id) => <CollectionItem key={id}><Link to={`/profile/${category}`}>{category}</Link><i className="material-icons secondary-content">arrow_forward</i></CollectionItem>)
     } else {
       mappedCategories = <p>Create a New Adventure Below</p>
     }
-    
 
     return ( 
-      <div>
-      <h3>Your Categories: </h3>
-      <ul>
-      {mappedCategories}
-      </ul>
-      <Link to="/listitem/new"> Create your new Adventure! </Link> <br /> 
+      <div className="center-align">
+          <Row className="align-center">
+            <Col m={6} s={12}>
+              <Collection header="Your Categories">
+                {mappedCategories}
+              </Collection>
+            </Col>
+          </Row>
+        <Button waves="light" style={{marginRight: '5px'}}>
+          <Link className="white-text" to="/listitem/new"> Create A New Adventure! </Link> <br /> 
+        </Button>
       </div>
     );
   }

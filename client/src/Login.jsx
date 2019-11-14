@@ -1,6 +1,8 @@
 import React from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { Button, TextInput } from 'react-materialize';
+import './css/Login.css';
 
 class Login extends React.Component {
   state = { 
@@ -34,16 +36,16 @@ class Login extends React.Component {
       output = this.state.redirect;
     } else {
       output = (
-        <form onSubmit={this.handleSubmit}>
-          Email: <input type="text" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email" /> <br />
-          Password: <input type="password" name="password" onChange={this.handleChange} value={this.state.password} placeholder="Password" /> <br />
-          <input type="submit" value="Login"/>
-        </form>
+        <div className="content">
+          <TextInput label="Email" type="text" name="email" onChange={this.handleChange} value={this.state.email} /> <br />
+          <TextInput label="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password} /><br />
+          <Button type="submit" waves="light" onClick={this.handleSubmit}>Log In</Button>
+        </div>
       )
     }
     return ( 
       <div className="App">
-        <h2>Log In Here:</h2>
+        <h2>Welcome Back</h2>
         {output}
       </div>
     );
