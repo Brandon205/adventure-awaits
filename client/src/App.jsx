@@ -69,8 +69,8 @@ class App extends React.Component {
           <Navbar>
             <Link className="brand-logo center" to="/">Adventure Awaits</Link>
             <Link to="/logout" onClick={this.logout}> Logout </Link>
-              <Link href='/profile'>Profile</Link>
-              <Link href="/listitem/new"> Create New Adventure</Link>
+              <Link to="/profile">Profile</Link>
+              <Link to="/listitem/new"> Create New Adventure</Link>
           </Navbar>
         </div>
       );
