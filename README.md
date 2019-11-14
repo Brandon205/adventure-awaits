@@ -66,7 +66,27 @@
 | GET | /auth/logout | Logout user | 
 | GET | /usercategories | Shows all categories with line items | 
 | GET | /categories | getting all categories for dropdown |
-
+| GET | /listitems/:cName | Shows all list items for their category |
+| POST | /categories | All categories for the user  |
+| GET | /listitems/:id | Shows all listitems for that category |
+| PUT | /listitems/:id | Updating listitems detail | 
+| PUT | /profile/:id | Updates whether the adventure is or is not check off by the user | 
+ 
+ 
+ 
+| MODEL | SCHEMA | NOTES | 
+| ----- | ------ | ------------ |
+| User | name, email, password, listitems | listitems is embedded within user | 
+| ListItem | name, description, photo, categories |  categories is a reference | 
+| Category | name | 
+ 
+ 
+## Things to Note and Changes for the Future:
+  Some goals for the future:  
+  - 1. Linking users who have similar categories. Perhaps with the end goal of having people be able to interact depending on their interests  
+  - 2. Have users add a date by which they want to finish their adventure and have a notification that the date is a certain amount of time away (ex: You wanted to 'Climb Machu Picchu' in 2 months!)   
+  - 3. Reactive styling to accommodate mobile and tablet users   
+  - 4. Mapbox functionality so user may mark the location of their finished adventure, or perhaps show the locations of all finished adventures on their profile page
     
 
 
