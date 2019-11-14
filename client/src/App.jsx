@@ -66,11 +66,11 @@ class App extends React.Component {
     if (this.state.user) {
       navContents = (
         <div className="nav-wrapper">
-          <Navbar alignLinks="left">
+          <Navbar>
             <Link className="brand-logo center" to="/">Adventure Awaits</Link>
-            <Link classname="logout" to="/logout" onClick={this.logout}> Logout </Link>
-            <Link  href='/profile'>Profile</Link>
-            <Link  href="/listitem/new"> Create New Adventure</Link>
+            <Link to="/logout" onClick={this.logout}> Logout </Link>
+              <Link href='/profile'>Profile</Link>
+              <Link href="/listitem/new"> Create New Adventure</Link>
           </Navbar>
         </div>
       );
