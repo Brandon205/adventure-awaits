@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
-import { Button, Col, Collection, CollectionItem } from 'react-materialize';
+import { Button, Row, Col, Collection, CollectionItem } from 'react-materialize';
 import './css/Login.css'
 
 class Profile extends React.Component {

@@ -1,9 +1,9 @@
-body {
+
+.App {
   background-image: url('../img/BackgroundImg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 .homepage-content {
   text-align: right;
   display: flex;
