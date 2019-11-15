@@ -3,14 +3,17 @@
     max-width: 300px;
     font-family: 'Patua One', cursive;
 }
+
 .input-newlist {
     font-family: 'Patua One', cursive;
     color: black;
     margin-top: 0;
 }
+
 .pTag {
     color: white;
 }
+
 .background {
     background-image: url('../img/mainPhoto.jpeg');
     background-size: cover;
@@ -21,6 +24,7 @@
     background-position: center center;
     text-align:center;
 }
+
 .newlist-item {
     width: 30vw;
     margin: 0 auto;

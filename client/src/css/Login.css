@@ -1,6 +1,12 @@
 h1, h2, p {
   margin-top: 0;
-  padding: 25px;
+  margin-bottom: .5em;
+  padding-top: 30px;
+}
+
+img {
+  max-width: 600px;
+  max-height: 500px;
 }
 
 .category-background {

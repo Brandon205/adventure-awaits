@@ -1,8 +1,9 @@
 import React from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import {Button,  Icon, Textarea, TextInput} from 'react-materialize';
+import { Button,  Icon, Textarea } from 'react-materialize';
 import './css/AdventureEdit.css';
+
 class AdventureEdit extends React.Component {
   state = { 
     name: '',
@@ -12,6 +13,7 @@ class AdventureEdit extends React.Component {
     category: null,
     redirect: ''
   }
+
   componentDidMount = () => {
     let config = {
       headers: {
@@ -29,6 +31,7 @@ class AdventureEdit extends React.Component {
       })
     })
   }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name] : e.target.value
@@ -39,35 +42,35 @@ class AdventureEdit extends React.Component {
     e.preventDefault()
     let config = {
       headers: {
-      Authorization: `Bearer ${this.props.token}`
+        Authorization: `Bearer ${this.props.token}`
       }
     }
     Axios.put(`/api/listitem/${this.props.match.params.id}`, {
-        _id: this.props.match.params.id,
-        name: this.state.name,
-        description: this.state.description,
-        photo: this.state.photo,
-        catId: this.state.category
+      _id: this.props.match.params.id,
+      name: this.state.name,
+      description: this.state.description,
+      photo: this.state.photo,
+      catId: this.state.category
     }, config).then( response => {
     this.setState({
-        description: '',
-        photo: '',
-        name: '',
-        redirect: <Redirect to={`/profile/${this.props.match.params.cName}`} />
-        })
+      description: '',
+      photo: '',
+      name: '',
+      redirect: <Redirect to={`/profile/${this.props.match.params.cName}`} />
+      })
     })
-}
+  }
+
   render() { 
     return ( 
-
       <div className="adventure-background">
         <div className="title">
           <h3 className="input-title">Describe Your Adventure</h3>
           <form className="form-id" onSubmit={this.handleSubmit}>
-          <input className="input" type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
-          <Textarea onChange={this.handleChange} name="description" value={this.state.description} placeholder="How did it go?" />
-          <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
-          <Button className="btn-input" type="submit" waves="light">
+            <input className="input" type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
+            <Textarea onChange={this.handleChange} name="description" value={this.state.description} placeholder="How did it go?" />
+            <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
+            <Button className="btn-input" type="submit" waves="light">
               Submit
               <Icon right>
               send
@@ -76,10 +79,7 @@ class AdventureEdit extends React.Component {
           </form> 
           {this.state.redirect}
         </div>
-
       </div>
-
-      
     );
   }
 }
