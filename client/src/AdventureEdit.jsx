@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import {Button,  Icon} from 'react-materialize';
+import {Button,  Icon, Textarea, TextInput} from 'react-materialize';
 import './css/AdventureEdit.css';
 class AdventureEdit extends React.Component {
   state = { 
@@ -13,7 +13,6 @@ class AdventureEdit extends React.Component {
     redirect: ''
   }
   componentDidMount = () => {
-    console.log(this.props.token)
     let config = {
       headers: {
       Authorization: `Bearer ${this.props.token}`
@@ -21,12 +20,11 @@ class AdventureEdit extends React.Component {
     }
     Axios.get(`/api/listitem/${this.props.match.params.id}`, config)
     .then(response => {
-      console.log(response.data)
       this.setState({
         listitem: response.data,
         name:  response.data.name,
         description: response.data.description,
-        photo: response.data.description,
+        photo: response.data.photo,
         category: response.data.categories[0]
       })
     })
@@ -64,10 +62,10 @@ class AdventureEdit extends React.Component {
 
       <div className="adventure-background">
         <div className="title">
-          <h3 className="input">Edit Your Adventure</h3>
+          <h3 className="input-title">Describe Your Adventure</h3>
           <form className="form-id" onSubmit={this.handleSubmit}>
-          <p className="input" >Adventure: </p><input className="input" type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
-          <p className="input">Description of the Completed Adventure:</p> <input className="input" type="text" onChange={this.handleChange} name="description" value={this.state.description} placeholder="How did it go?"/><br />
+          <input className="input" type="text" onChange={this.handleChange} name="name" value={this.state.name} placeholder={this.state.name}/><br />
+          <Textarea onChange={this.handleChange} name="description" value={this.state.description} placeholder="How did it go?" />
           <input type="hidden" onChange={this.handleChange} name="photo" value=""/> 
           <Button className="btn-input" type="submit" waves="light">
               Submit

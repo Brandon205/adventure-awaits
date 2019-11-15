@@ -3,6 +3,9 @@
   background-image: url('../img/BackgroundImg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
   width: 100vw;
   height: 100vh;
 }
