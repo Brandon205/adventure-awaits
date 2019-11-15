@@ -1,6 +1,8 @@
 import React from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-materialize';
+import './css/Login.css';
 
 class AdventureDetail extends React.Component {
   state = { 
@@ -32,7 +34,6 @@ class AdventureDetail extends React.Component {
     const fd = new FormData();
     fd.append('file', this.state.selectedImage);
     fd.append('upload_preset', 'namr3phs');
-
     Axios({
       url: 'https://api.cloudinary.com/v1_1/brandon205/upload',
       method: 'POST',
@@ -61,39 +62,45 @@ class AdventureDetail extends React.Component {
       if (this.state.details.photo.match(re)) {
         // If there are details on the page and if the photo string starts with 'https', display details listed below 
         content = (
-          <div className="App">
+          <div className="category-background">
             <h1>{this.state.details.name}</h1>
-            <p>{this.state.details.description}</p>
+            <h4>{this.state.details.description}</h4>
             <img src={this.state.details.photo} alt="Event" /> <br/>
-            <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
+            <Button waves="light">
+              <Link className="white-text" to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link><br/>
+            </Button>
           </div>
         )
       } else if (this.state.displayImage){
         // To make uploaded image display immediately after user uploads it 
         content = (
-        <div className="App">
+        <div className="category-background">
           <h1>{this.state.details.name}</h1>
-          <p>{this.state.details.description}</p>
+          <h4>{this.state.details.description}</h4>
           <img src={this.state.displayImage} alt="Event"/> <br/>
-          <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
+          <Button waves="light">
+              <Link className="white-text" to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link><br/>
+            </Button>
         </div>
         )
       } else {
         // If there are no displayed images and no photo in the database, will display the form 
         content = (
-          <div className="App">
+          <div className="category-background">
             <h1>{this.state.details.name}</h1>
-            <p>{this.state.details.description}</p>
+            <h4>{this.state.details.description}</h4>
             <input type="file" onChange={this.handleFileChange} />
-            <button onClick={this.handleImageSubmit}>Add Photo</button> <br />
-            <Link to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link>
+            <Button onClick={this.handleImageSubmit}>Add Photo</Button> <br />
+            <Button waves="light">
+              <Link className="white-text" to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link><br/>
+            </Button>
           </div>
         )
       }
     } else {
       // Only when component did mount hasn't loaded
       content = (
-        <p>Loading...</p>
+        <p className="category-background">Loading...</p>
       )
     }
 

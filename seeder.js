@@ -1,18 +1,14 @@
-const Category = require('./models/category')
+require('dotenv').config();
 const mongoose = require('mongoose');
+const Category = require('./models/category');
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.once('open', () => console.log(`Connected to MongoDB on ${db.host} at ${db.port}`));
+db.on('error', (err) => console.log(`Database error: ${err}`));
 
-let categories = ['Art', 'Career', 'Education', 'Events', 'Family', 'Financial', 'Food', 'Life Goals', 'Random', 'Relationships', 'Sports', 'Travel', 'Volunteer'];
+let categories = ['Art', 'Career', 'Education', 'Events', 'Family', 'Financial', 'Fitness', 'Food', 'Life Goals', 'Random', 'Relationships', 'Sports', 'Travel', 'Volunteer'];
 
-// for (category of categories) {
-//   let newCat = new Category({name: category});
-//   newCat.save();
-// }
-
-for (category of categories) {
-  console.log('made it here');
-  Category.create({name: category}, (err, cat) => {
-    console.log(cat);
+categories.forEach(cat => {
+  Category.create({name: cat}, (err, category) => {
   });
-};
-
-console.log('Done');
+});

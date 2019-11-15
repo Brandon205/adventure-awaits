@@ -13,6 +13,7 @@ import Bucketlist from './Bucketlist';
 import NewListitem from './NewListitem';
 import AdventureDetail from './AdventureDetail';
 import AdventureEdit from './AdventureEdit';
+import { Navbar } from 'react-materialize';
 import './css/App.css';
 
 class App extends React.Component {
@@ -24,7 +25,7 @@ class App extends React.Component {
   }
 
   checkForLocalToken = () => {
-    // Look in LS for localtoken
+    //Look in LS for localtoken
     let token = localStorage.getItem('mernToken');
     if (!token || token === 'undefined') {
       // if no taken, remove all evidence of mernToken from LS and state
@@ -64,33 +65,24 @@ class App extends React.Component {
     let navContents;
     if (this.state.user) {
       navContents = (
-        <nav>
-          <div className="nav-wrapper">
-            <ul>
-              <li><a href="#" onClick={this.logout}>Logout</a></li>
-            </ul>
+        <div className="nav-wrapper">
+          <Navbar>
             <Link className="brand-logo center" to="/">Adventure Awaits</Link>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li><Link to='/profile'>Profile</Link></li>
-              <li><Link to='/listitem/new'>New</Link></li>
-            </ul>
-          </div>
-        </nav>
+            <Link to="/" onClick={this.logout}> Logout </Link>
+              <Link to="/profile">Profile</Link>
+              <Link to="/listitem/new"> Create New Adventure</Link>
+          </Navbar>
+        </div>
       );
     } else {
       navContents = (
-        <nav>
-          <div className="nav-wrapper">
-            <ul className="left hide-on-med-and-down">
-              <li><Link to='/signup'>Signup</Link></li>
-              <li><Link to='/login'>Login</Link></li>
-            </ul>
+        <div className="nav-wrapper">
+          <Navbar>
             <Link className="brand-logo center" to="/">Adventure Awaits</Link>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li>Welcome!</li>
-            </ul>
-          </div>
-        </nav>
+            <Link to='/signup'>Signup</Link>
+            <Link to='/login'>Login</Link>
+          </Navbar>
+        </div>
       );
     }
 
@@ -107,6 +99,12 @@ class App extends React.Component {
         <Route exact path="/profile/:cName" render={ (props) => <Bucketlist {...props} token={this.state.token} /> } />
         <Route exact path="/profile/:id/adventure/:cName" render={ (props) => <AdventureDetail {...props} token={this.state.token} /> } />
         <Route exact path="/profile/:id/edit/:cName" render={ (props) => <AdventureEdit {...props} token={this.state.token} /> } />
+        <footer>
+          <span>Created By: </span>
+          <a className="link" href="https://github.com/Abdi208" target="_blank" rel="noopener noreferrer">Abdi </a>,
+          <a className="link" href="https://github.com/AriG150" target="_blank" rel="noopener noreferrer"> Ari </a>, and
+          <a className="link"href="https://github.com/Brandon205" target="_blank" rel="noopener noreferrer"> Brandon </a>
+        </footer>
       </Router>
     );
   }

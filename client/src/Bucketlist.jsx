@@ -3,6 +3,7 @@ import Axios from 'axios';
 import {Link} from 'react-router-dom';
 import {Checkbox} from 'react-materialize';
 import './css/BucketList.css';
+
 class Bucketlist extends React.Component {
   state = { 
     category: null,
@@ -22,7 +23,6 @@ class Bucketlist extends React.Component {
 
   handleChecked = (e, id) => {
     e.preventDefault();
-    console.log('hello world')
     let config = {
       headers: {
         Authorization: `Bearer ${this.props.token}`
@@ -38,17 +38,19 @@ class Bucketlist extends React.Component {
   render() { 
     var mappedListitems;
     if (this.state.listItems.length > 0 && this.state.category.length > 0) {
-      mappedListitems = this.state.listItems.map((listItem, id) => <div key={id}><Checkbox className="checkbox" checked={listItem.checked} value={listItem._id} label='' onChange={(e) => this.handleChecked(e,id)} /><Link className="mapped-items" to={`/profile/${listItem._id}/adventure/${this.props.match.params.cName}`}>{listItem.name}</Link>   -   <Link className="edit-items"to={`/profile/${listItem._id}/edit/${this.props.match.params.cName}`}>Edit</Link> </div>)
+      mappedListitems = this.state.listItems.map((listItem, id) => <div className="describe" key={id}><Checkbox className="checkbox" checked={listItem.checked} value={listItem._id} label='' onChange={(e) => this.handleChecked(e,id)} /><Link className="mapped-items" to={`/profile/${listItem._id}/adventure/${this.props.match.params.cName}`}>{listItem.name}</Link>   -   <Link className="edit-items"to={`/profile/${listItem._id}/edit/${this.props.match.params.cName}`}>Describe</Link> </div>)
     } else {
       mappedListitems = <li>Loading...</li>
     }
 
     return ( 
-      <div className="list-items">
-        <div className="category-name">Your {this.props.match.params.cName} Adventures</div>
-        <ul>
-          {mappedListitems}
-        </ul>
+      <div className="category-background">
+          <div className="list-items">
+            <div className="category-name">Your {this.props.match.params.cName} Adventures</div>
+            <ul>
+              {mappedListitems}
+            </ul>
+          </div>
       </div>
     );
   }

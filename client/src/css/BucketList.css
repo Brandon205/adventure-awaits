@@ -2,21 +2,39 @@
     margin: 0 auto;
     max-width: 300px;
     font-family: 'Patua One', cursive;
-    margin-top: 60px;
+    margin-top: 0;
 }
+
 .mapped-items {
-    color: white;
+    color:white;
     font-size: 35px;
 }
+
 .category-name {
-    color: white;
+    color: whitesmoke;
     font-size: 35px;
     width: 100vw;
 }
+
 .edit-items {
-    color: white;
+    color:whitesmoke;
 }
 
 .checkbox{
     background-color: black;
+}
+
+.category-background {
+    background-image: url('../img/mainPhoto.jpeg');
+    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0;
+}
+
+.describe{
+    width: 100vw;
 }
