@@ -37,7 +37,7 @@ class Bucketlist extends React.Component {
   render() { 
     var mappedListitems;
     if (this.state.listItems.length > 0 && this.state.category.length > 0) {
-      mappedListitems = this.state.listItems.map((listItem, id) => <div key={id}><Checkbox className="checkbox" checked={listItem.checked} value={listItem._id} label='' onChange={(e) => this.handleChecked(e,id)} /><Link className="mapped-items" to={`/profile/${listItem._id}/adventure/${this.props.match.params.cName}`}>{listItem.name}</Link>   -   <Link className="edit-items"to={`/profile/${listItem._id}/edit/${this.props.match.params.cName}`}>Edit</Link> </div>)
+      mappedListitems = this.state.listItems.map((listItem, id) => <div className="describe" key={id}><Checkbox className="checkbox" checked={listItem.checked} value={listItem._id} label='' onChange={(e) => this.handleChecked(e,id)} /><Link className="mapped-items" to={`/profile/${listItem._id}/adventure/${this.props.match.params.cName}`}>{listItem.name}</Link>   -   <Link className="edit-items"to={`/profile/${listItem._id}/edit/${this.props.match.params.cName}`}>Describe</Link> </div>)
     } else {
       mappedListitems = <li>Loading...</li>
     }
