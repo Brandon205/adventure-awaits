@@ -101,9 +101,9 @@ class App extends React.Component {
         <Route exact path="/profile/:id/edit/:cName" render={ (props) => <AdventureEdit {...props} token={this.state.token} /> } />
         <footer>
           <span>Created By: </span>
-          <a className="link" href="https://github.com/Abdi208" target="_blank">Abdi </a>,
-          <a className="link" href="https://github.com/AriG150" target="_blank"> Ari </a>, and
-          <a className="link"href="https://github.com/Brandon205" target="_blank"> Brandon </a>
+          <a className="link" href="https://github.com/Abdi208" target="_blank" rel="noopener noreferrer">Abdi </a>,
+          <a className="link" href="https://github.com/AriG150" target="_blank" rel="noopener noreferrer"> Ari </a>, and
+          <a className="link"href="https://github.com/Brandon205" target="_blank" rel="noopener noreferrer"> Brandon </a>
         </footer>
       </Router>
     );
