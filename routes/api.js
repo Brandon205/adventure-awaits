@@ -50,7 +50,7 @@ router.get('/listitem/:id', (req, res) => {
 router.post('/newcategory', (req, res) => {
   Category.create({name: req.body.name}, (err, category) => {
     res.json(category);
-  })
+  });
 }); 
 
 // POST /api/categories Will "add" a new category & list item referencing that category
@@ -84,7 +84,7 @@ router.put('/listitem/:id', (req, res) => {
     user.save( (err, newInfo) => {
       res.json(newInfo.listitems.id(req.params.id));
     });
-  }).catch(err => console.log(err))
+  }).catch(err => console.log(err));
 });
 
 // PUT /profile/:id Will save the whether the user has checked/unchecked the accomplishment and send the updated data to the front
@@ -102,7 +102,7 @@ router.put('/profile/:id', (req, res) => {
     });
     user.save( (err, newInfo) => {
       res.json(newInfo.listitems.id(req.params.id));
-    })
+    });
   });
 });
 

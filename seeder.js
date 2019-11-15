@@ -8,24 +8,7 @@ db.on('error', (err) => console.log(`Database error: ${err}`));
 
 let categories = ['Art', 'Career', 'Education', 'Events', 'Family', 'Financial', 'Fitness', 'Food', 'Life Goals', 'Random', 'Relationships', 'Sports', 'Travel', 'Volunteer'];
 
-
 categories.forEach(cat => {
   Category.create({name: cat}, (err, category) => {
-  })
+  });
 });
-
-// for (category of categories) {
-//   let newCat = new Category({name: category});
-//   newCat.save();
-// }
-
-// for (category of categories) {
-//   console.log('made it here');
-//   Category.insertMany({name: category}, (err, cat) => {
-//     console.log(cat);
-//   });
-// };
-
-// Category.insert([{name: 'Art'}, {name: 'Career'}, {name: 'Education'}]);
-
-console.log('Done');

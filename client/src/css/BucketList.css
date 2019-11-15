@@ -4,15 +4,18 @@
     font-family: 'Patua One', cursive;
     margin-top: 0;
 }
+
 .mapped-items {
     color:white;
     font-size: 35px;
 }
+
 .category-name {
     color: whitesmoke;
     font-size: 35px;
     width: 100vw;
 }
+
 .edit-items {
     color:whitesmoke;
 }

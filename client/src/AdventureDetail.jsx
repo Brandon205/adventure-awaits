@@ -2,7 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-materialize';
-import './css/Login.css'
+import './css/Login.css';
 
 class AdventureDetail extends React.Component {
   state = { 
@@ -34,7 +34,6 @@ class AdventureDetail extends React.Component {
     const fd = new FormData();
     fd.append('file', this.state.selectedImage);
     fd.append('upload_preset', 'namr3phs');
-
     Axios({
       url: 'https://api.cloudinary.com/v1_1/brandon205/upload',
       method: 'POST',
@@ -65,7 +64,7 @@ class AdventureDetail extends React.Component {
         content = (
           <div className="category-background">
             <h1>{this.state.details.name}</h1>
-            <p>{this.state.details.description}</p>
+            <h4>{this.state.details.description}</h4>
             <img src={this.state.details.photo} alt="Event" /> <br/>
             <Button waves="light">
               <Link className="white-text" to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link><br/>
@@ -77,7 +76,7 @@ class AdventureDetail extends React.Component {
         content = (
         <div className="category-background">
           <h1>{this.state.details.name}</h1>
-          <p>{this.state.details.description}</p>
+          <h4>{this.state.details.description}</h4>
           <img src={this.state.displayImage} alt="Event"/> <br/>
           <Button waves="light">
               <Link className="white-text" to={`/profile/${this.props.match.params.id}/edit/${this.props.match.params.cName}`}>Edit</Link><br/>
@@ -89,7 +88,7 @@ class AdventureDetail extends React.Component {
         content = (
           <div className="category-background">
             <h1>{this.state.details.name}</h1>
-            <p>{this.state.details.description}</p>
+            <h4>{this.state.details.description}</h4>
             <input type="file" onChange={this.handleFileChange} />
             <Button onClick={this.handleImageSubmit}>Add Photo</Button> <br />
             <Button waves="light">

@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/Homepage.css';
 
-
 class HomePage extends React.Component {
-  
   render () {
     var links; 
     if (this.props.token) {
@@ -22,6 +20,7 @@ class HomePage extends React.Component {
         </div>
       )
     }
+
     return (
       <div className="App">
         <div className="homepage-content">
@@ -44,9 +43,8 @@ class HomePage extends React.Component {
           {links}
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default HomePage;
-

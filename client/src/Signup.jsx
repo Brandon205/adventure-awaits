@@ -46,6 +46,7 @@ class Signup extends React.Component {
         </div>
       )
     }
+
     return ( 
       <div className="App">
         <h2>Sign Up</h2>
