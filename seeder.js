@@ -11,7 +11,6 @@ let categories = ['Art', 'Career', 'Education', 'Events', 'Family', 'Financial',
 
 categories.forEach(cat => {
   Category.create({name: cat}, (err, category) => {
-    console.log(`${err ? err : category}`)
   })
 });
 
